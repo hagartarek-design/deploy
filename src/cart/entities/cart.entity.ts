@@ -10,8 +10,8 @@ import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 
 export class Cart {
-@PrimaryGeneratedColumn()
-id:number
+@PrimaryGeneratedColumn() 
+id:number 
 @ManyToOne(()=>Student,(student)=>student.attachments)
 student?:Student  
 // @Column()
