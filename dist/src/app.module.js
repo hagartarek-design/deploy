@@ -84,7 +84,8 @@ exports.AppModule = AppModule = __decorate([
             }),
             firebase_admin_1.FirebaseAdminModule,
             typeorm_1.TypeOrmModule.forRoot({
-                host: process.env.DB_HOSTS,
+                type: "mysql",
+                host: process.env.DB_HOST,
                 username: process.env.DB_USERNAME,
                 password: process.env.DB_PASSWORD,
                 database: process.env.DB_DATABASE,
