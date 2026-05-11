@@ -19,11 +19,10 @@ async function bootstrap() {
     prefix: '/pdf-images/', // URL prefix
   });
    app.enableCors({
-    origin: [
-      'https://student-51d79.web.app',
-      'http://localhost:3000',
-    ],
+    origin: '*',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
+
   });
 //  app.enableCors({
 //   origin: true,
