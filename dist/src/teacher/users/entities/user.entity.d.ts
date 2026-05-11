@@ -1,0 +1,37 @@
+import { Assignment } from "../../../assignments/entities/assignment.entity";
+import { Exam } from "../../../teacher/exams/entities/exam.entity";
+import { Image } from "../../../teacher/images/entities/image.entity";
+import { Section } from "../../../sections/entities/section.entity";
+import { Course } from "../../../courses/entities/course.entity";
+import { Users } from "../../../users/entities/user.entity";
+export declare class User {
+    id: number;
+    grade: string;
+    email: string;
+    provider: string;
+    password: string;
+    phone?: string;
+    cardimg: string;
+    examcardimg: string;
+    assigcardimg: string;
+    username: string;
+    image: string;
+    googleId: string;
+    refreshToken: string;
+    resetToken: string;
+    isActive: boolean;
+    deletedAt?: Date;
+    fullname: string;
+    images: Image[];
+    section: Section[];
+    assignment: Assignment[];
+    exam: Exam[];
+    courses?: Course[];
+    name: string;
+    picture: string;
+    createdAt: Date;
+    updatedAt: Date;
+    roles: 'user' | 'student';
+    role: 'user' | 'student';
+    user: Users;
+}

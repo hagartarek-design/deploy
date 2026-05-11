@@ -1,0 +1,28 @@
+// import * as admin from 'firebase-admin';
+// admin.initializeApp({
+//   credential: admin.credential.applicationDefault(),
+// });
+
+// export { admin };
+import { Module, Global } from '@nestjs/common';
+import * as admin from 'firebase-admin';
+
+const firebaseAdminProvider = {
+  provide: 'FIREBASE_ADMIN',
+  useFactory: () => {
+    if (admin.apps.length === 0) {
+      admin.initializeApp({
+        credential: admin.credential.cert(require('../../../../studentnew.json')),
+    
+      });
+    }
+    return admin;
+  },
+};
+
+@Global()
+@Module({
+  providers: [firebaseAdminProvider],
+  exports: [firebaseAdminProvider],
+})
+export class FirebaseAdminModule {}
