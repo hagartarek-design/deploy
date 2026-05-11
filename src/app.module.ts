@@ -211,7 +211,7 @@ import { RolesSeeder } from 'common/Gaurds/script';
     FirebaseAdminModule,
 
  TypeOrmModule.forRoot({
-      //  type:process.env.DB_HOST,
+       type:"mysql",
         host:process.env.DB_HOSTS,
         // port:3306,
         username:process.env.DB_USERNAME,
