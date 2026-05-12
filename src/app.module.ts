@@ -230,6 +230,9 @@ import { RolesSeeder } from 'common/Gaurds/script';
   // database: 'teacher_portal2',
 
   // autoLoadEntities: true,
+  
+    autoLoadEntities: true,
+    synchronize: true,
 
   entities: [
     Course,
@@ -259,9 +262,6 @@ import { RolesSeeder } from 'common/Gaurds/script';
     Role,
     Users,
   ],
-
-  autoLoadEntities: true,
-  synchronize: true,
 
   retryAttempts: 10,
   retryDelay: 5000,
