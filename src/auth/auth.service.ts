@@ -362,6 +362,7 @@ async verifyGoogleToken(idToken: string) {
     throw new Error('Invalid Google token');
   }
 }
+
 async studentGoogleLogin(idToken:string){
   try {
     const { email, name, picture } = await this.verifyGoogleToken(idToken);

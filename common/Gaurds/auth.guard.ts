@@ -38,7 +38,7 @@ export class AuthGuard implements CanActivate {
   constructor(private jwtService: JwtService, private reflector: Reflector) {}
 
   canActivate(context: ExecutionContext): boolean {
-   const isPublic = this.reflector.get<boolean>('public', context.getHandler());
+   const isPublic = this.reflector.get<boolean>('Public', context.getHandler());
     if (isPublic) return true; 
 
     const request = context.switchToHttp().getRequest();

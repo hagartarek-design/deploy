@@ -6,4 +6,4 @@ import { SetMetadata } from '@nestjs/common';
 // // Roles(['user','admin'])
 
 // /
-export const Public = () => SetMetadata('public', "public");
+export const Public = () => SetMetadata('Public', "Public");

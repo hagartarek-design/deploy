@@ -18,11 +18,12 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'uploads', 'pdf-images'), {
     prefix: '/pdf-images/', // URL prefix
   });
-   app.enableCors({
-    origin: '*',
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
-    credentials: true,
 
+  app.enableCors({
+    origin: true,
+    credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
   });
 //  app.enableCors({
 //   origin: true,
