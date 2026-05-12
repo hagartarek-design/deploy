@@ -210,13 +210,20 @@ import { RolesSeeder } from 'common/Gaurds/script';
 
     FirebaseAdminModule,
 
- TypeOrmModule.forRoot({
-       type:"mysql",
-        host:process.env.DB_HOST,
-        // port:process.env.DB_PORT,
-        username:process.env.DB_USERNAME,
-        password:process.env.DB_PASSWORD,
-        database:process.env.DB_DATABASE, 
+TypeOrmModule.forRoot({
+  type: 'mysql',
+host: process.env.DB_HOST,
+port: Number(process.env.DB_PORT),
+username: process.env.DB_USERNAME,
+password: process.env.DB_PASSWORD,
+database: process.env.DB_DATABASE,
+
+  autoLoadEntities: true,
+  synchronize: true,
+
+  retryAttempts: 10,
+  retryDelay: 5000,
+
   // type: 'mysql',
 
   // host: 'mysql_db',
@@ -231,8 +238,8 @@ import { RolesSeeder } from 'common/Gaurds/script';
 
   // autoLoadEntities: true,
   
-    autoLoadEntities: true,
-    synchronize: true,
+    // autoLoadEntities: true,
+    // synchronize: true,
 
   entities: [
     Course,
@@ -265,6 +272,8 @@ import { RolesSeeder } from 'common/Gaurds/script';
 
   retryAttempts: 10,
   retryDelay: 5000,
+
+
 }),
     TypeOrmModule.forFeature([Course,
     Material,
