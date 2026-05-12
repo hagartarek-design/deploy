@@ -13,7 +13,13 @@ export declare class AuthController {
         token: string;
         refreshtoken: string;
     }>;
-    studentGoogleLogin(idToken: string): Promise<any>;
+    studentGoogleLogin(idToken: string): Promise<{
+        success: boolean;
+        message: string;
+        token: string;
+        refreshtoken: string;
+        userId: number;
+    }>;
     verifyGoogleToken(idToken: any): Promise<void>;
     login(email: string, password: string): Promise<import("@nestjs/common").UnauthorizedException | import("@nestjs/common").BadRequestException | {
         message: string;
@@ -26,7 +32,7 @@ export declare class AuthController {
     }>;
     refresh(body: {
         refreshToken: string;
-    }): Promise<import("@nestjs/common").ConflictException | import("@nestjs/common").UnauthorizedException | {
+    }): Promise<import("@nestjs/common").UnauthorizedException | import("@nestjs/common").ConflictException | {
         token: string;
     }>;
     logout(req: any): Promise<{

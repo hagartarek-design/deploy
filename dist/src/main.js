@@ -12,11 +12,10 @@ async function bootstrap() {
         prefix: '/pdf-images/',
     });
     app.enableCors({
-        origin: [
-            'https://student-51d79.web.app',
-            'http://localhost:3000',
-        ],
+        origin: true,
         credentials: true,
+        methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+        allowedHeaders: ['Content-Type', 'Authorization'],
     });
     app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
     await app.listen(4000, '0.0.0.0');

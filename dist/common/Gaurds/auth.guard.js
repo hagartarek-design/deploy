@@ -19,7 +19,7 @@ let AuthGuard = class AuthGuard {
         this.reflector = reflector;
     }
     canActivate(context) {
-        const isPublic = this.reflector.get('public', context.getHandler());
+        const isPublic = this.reflector.get('Public', context.getHandler());
         if (isPublic)
             return true;
         const request = context.switchToHttp().getRequest();
