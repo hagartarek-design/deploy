@@ -40,7 +40,7 @@ export class AuthController {
   async studentGoogleLogin(@Body('idToken') idToken: string)
    {
     return await this.authService.studentGoogleLogin(idToken);
-  }
+  } 
   
   async verifyGoogleToken(idToken){
     const client = new OAuth2Client();

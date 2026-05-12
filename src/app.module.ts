@@ -260,7 +260,7 @@ import { RolesSeeder } from 'common/Gaurds/script';
     Users,
   ],
 
-  synchronize: false,
+  synchronize: true,
 
   retryAttempts: 10,
   retryDelay: 5000,

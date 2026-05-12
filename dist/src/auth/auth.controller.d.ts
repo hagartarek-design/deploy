@@ -13,13 +13,7 @@ export declare class AuthController {
         token: string;
         refreshtoken: string;
     }>;
-    studentGoogleLogin(idToken: string): Promise<{
-        success: boolean;
-        message: string;
-        token: string;
-        refreshtoken: string;
-        userId: number;
-    }>;
+    studentGoogleLogin(idToken: string): Promise<any>;
     verifyGoogleToken(idToken: any): Promise<void>;
     login(email: string, password: string): Promise<import("@nestjs/common").UnauthorizedException | import("@nestjs/common").BadRequestException | {
         message: string;

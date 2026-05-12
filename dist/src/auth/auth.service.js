@@ -22,13 +22,12 @@ const bcrypt = require("bcrypt");
 const jwt_1 = require("@nestjs/jwt");
 const student_entity_1 = require("../students/entities/student.entity");
 let AuthService = class AuthService {
-    ;
     constructor(user, students, firebaseAdmin, jwtService) {
         this.user = user;
         this.students = students;
         this.firebaseAdmin = firebaseAdmin;
         this.jwtService = jwtService;
-        this.client = new google_auth_library_1.OAuth2Client(process.env.CLIENT_ID);
+        this.client = new google_auth_library_1.OAuth2Client;
     }
     async register(email, password, phone, username, fullname) {
         const existingUser = await this.user.findOne({ where: { email } });
@@ -149,20 +148,16 @@ let AuthService = class AuthService {
     }
     async verifyGoogleToken(idToken) {
         try {
-            const ticket = await this.client.verifyIdToken({
-                idToken,
-                audience: process.env.CLIENT_ID,
-            });
-            const payload = ticket.getPayload();
+            const decodedToken = await this.firebaseAdmin.auth().verifyIdToken(idToken);
             return {
-                email: payload.email,
-                name: payload.name,
-                picture: payload.picture,
-                uid: payload.sub,
+                email: decodedToken.email,
+                name: decodedToken.name,
+                picture: decodedToken.picture,
+                uid: decodedToken.sub,
             };
         }
         catch (error) {
-            console.error('Google token verification error:', error);
+            console.error(' Google token verification error:', error);
             throw new Error('Invalid Google token');
         }
     }
@@ -192,7 +187,7 @@ let AuthService = class AuthService {
             };
         }
         catch (error) {
-            console.log(error);
+            return error;
         }
     }
     async googleLogin(idToken) {
