@@ -26,7 +26,7 @@ export declare class AuthController {
     }>;
     refresh(body: {
         refreshToken: string;
-    }): Promise<import("@nestjs/common").UnauthorizedException | import("@nestjs/common").ConflictException | {
+    }): Promise<import("@nestjs/common").ConflictException | import("@nestjs/common").UnauthorizedException | {
         token: string;
     }>;
     logout(req: any): Promise<{

@@ -280,6 +280,6 @@ __decorate([
     __metadata("design:type", user_entity_1.Users)
 ], Student.prototype, "user", void 0);
 exports.Student = Student = __decorate([
-    (0, typeorm_1.Entity)()
+    (0, typeorm_1.Entity)('student')
 ], Student);
 //# sourceMappingURL=student.entity.js.map

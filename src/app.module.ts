@@ -220,8 +220,8 @@ database: process.env.DB_DATABASE,
   autoLoadEntities: true,
   synchronize: true,
 
-  retryAttempts: 10,
-  retryDelay: 5000,
+  // retryAttempts: 10,
+  // retryDelay: 5000,
 
   // type: 'mysql',
 
