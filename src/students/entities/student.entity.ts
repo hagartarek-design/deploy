@@ -14,7 +14,7 @@ import { Attachment } from "../../attachments/entities/attachment.entity";
 import { Studentquestion } from "../../studentquestions/entities/studentquestion.entity";
 // import { Role } from "../../role/entities/role.entity";
 import {Users}from '../../users/entities/user.entity';
-@Entity()
+@Entity('student')
 export class Student {
 @PrimaryGeneratedColumn()
 id:number
