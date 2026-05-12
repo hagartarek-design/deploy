@@ -399,7 +399,8 @@ async studentGoogleLogin(idToken:string){
       userId: students.id,
     };
   } catch (error) {
-    return error;
+    console.log(  error);
+   
   }
 }
 
