@@ -380,47 +380,48 @@ async verifyGoogleToken(idToken: string) {
     throw new Error('Invalid Google token');
   }
 }
-async studentGoogleLogin(idToken:string){
-  try {
-    const { email, name, picture } = await this.verifyGoogleToken(idToken);
+// async studentGoogleLogin(idToken:string){
+//   try {
+//     const { email, name, picture } = await this.verifyGoogleToken(idToken);
 
-    let students = await this.students.findOne({ where: { email } });
-    if (!students) {
-      students = await this.students.create({
-        name: name,
-        email,
-        provider: 'google',
-        picture: picture,
-      });
-      await this.students.save(students);
-    }
+//     let students = await this.students.findOne({ where: { email } });
+//     if (!students) {
+//       students = await this.students.create({
+//         name: name,
+//         email,
+//         provider: 'google',
+//         picture: picture,
+//       });
+//       await this.students.save(students);
+//     }
 
-    const token = this.jwtService.sign(
-      { id: students.id, email: students.email },
-      { secret: process.env.SECRET_KEY, expiresIn: '2d' }, 
-    );
-    console.log('id:'+token);
+//     const token = this.jwtService.sign(
+//       { id: students.id, email: students.email },
+//       { secret: process.env.SECRET_KEY, expiresIn: '2d' }, 
+//     );
+//     console.log('id:'+token);
     
 
-    const refreshtoken = this.jwtService.sign(
-      { id: students.id, email: students.email },
-      { secret: process.env.REFRESH_SECRET, expiresIn: '5d' }, 
-    );
+//     const refreshtoken = this.jwtService.sign(
+//       { id: students.id, email: students.email },
+//       { secret: process.env.REFRESH_SECRET, expiresIn: '5d' }, 
+//     );
 
-    const hashedrefreshtoken = await bcrypt.hash(refreshtoken, 10);
-    await this.students.update(students.id, { refreshToken: hashedrefreshtoken });
+//     const hashedrefreshtoken = await bcrypt.hash(refreshtoken, 10);
+//     await this.students.update(students.id, { refreshToken: hashedrefreshtoken });
 
-    return {
-      success: true,
-      message: 'Logged in successfully',
-      token,           // Access Token
-      refreshtoken,    // Refresh Token  
-      userId: students.id,
-    };
-  } catch (error) {
-    return error;
-  }
-}
+//     return {
+//       success: true,
+//       message: 'Logged in successfully',
+//       token,           // Access Token
+//       refreshtoken,    // Refresh Token  
+//       userId: students.id,
+//       students:students
+//     };
+//   } catch (error) {
+//     return error;
+//   }
+// }
 
 // async studentGoogleLogin(idToken:string){
 // try {
@@ -505,6 +506,45 @@ console.log(token);
     id: user.id,
     email: user.email,
     name: user.name,
+  }
+  };
+}
+async studentGoogleLogin(idToken: string,) {
+  const { email, name,  } = await this.verifyGoogleTokenTeacher(idToken);
+  let student = await this.students.findOne({ where: { email } });
+  console.log(student)
+
+  if (!student) {
+    student = this.students.create({
+      name: name,
+      email,
+      provider: 'google',
+      // image:picture,
+    });
+    // student.section = { id:  student.id } as any;
+    await this.students.save(student,);
+  }
+
+  const token = this.jwtService.sign(
+    { id: student.id , email:student.email,},
+    { expiresIn: '1m' },
+  );
+
+  const refreshtoken = this.jwtService.sign(
+    { id: student.id , email:student.email,},
+    { expiresIn: '2m' },
+  );
+console.log(token);
+
+  return {
+    success: true,
+    message: 'Logged in successfully',
+    token,studentId:student.id,
+    refreshtoken,student: {
+  
+    id: student.id,
+    email: student.email,
+    name: student.name,
   }
   };
 }
