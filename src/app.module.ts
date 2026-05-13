@@ -202,6 +202,7 @@ import { DynamicRoleGuard } from 'common/Gaurds/dynamicrolegaurd';
 import { JwtAuthGuard } from 'common/Gaurds/mockdynamicroles';
 import { RolesSeeder } from 'common/Gaurds/script';
 import { FirebaseTeacherModule } from './auth/entities/firebase-admin-teacher';
+import { RolesSeeder2 } from 'common/Gaurds/script copy';
 
 @Module({
   imports: [
@@ -335,7 +336,7 @@ FirebaseTeacherModule,
     DynamicRoleGuard,
     JwtAuthGuard,
     Reflector,
-    RolesSeeder,
+    RolesSeeder,RolesSeeder2
   ],
 })
 export class AppModule {}
