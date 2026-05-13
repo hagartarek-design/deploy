@@ -16,8 +16,6 @@ const course_entity_1 = require("../courses/entities/course.entity");
 const platform_express_1 = require("@nestjs/platform-express");
 const multer_1 = require("multer");
 const auth_module_1 = require("../auth/auth.module");
-const core_1 = require("@nestjs/core");
-const auth_guard_1 = require("../../common/Gaurds/auth.guard");
 const image_entity_1 = require("../teacher/images/entities/image.entity");
 const user_entity_1 = require("../teacher/users/entities/user.entity");
 const fileupload_1 = require("../teacher/users/uploads/fileupload");
@@ -45,10 +43,6 @@ exports.StudentsModule = StudentsModule = __decorate([
         ],
         controllers: [students_controller_1.StudentsController],
         providers: [students_service_1.StudentsService,
-            {
-                provide: core_1.APP_GUARD,
-                useClass: auth_guard_1.AuthGuard,
-            },
             smsotp_1.twilioService],
     })
 ], StudentsModule);

@@ -35,10 +35,10 @@ import { AuthService } from 'src/auth/auth.service';
     TypeOrmModule.forFeature([Student,Course,Image,User,Exam,Userquestion,StudentCourse]),MulterModule.register(multerConfig),],
   controllers: [StudentsController],
   providers: [StudentsService,//AuthService,
-     {
-    provide: APP_GUARD,
-    useClass: AuthGuard,
-  },
+  //    {
+  //   provide: APP_GUARD,
+  //   useClass: AuthGuard,
+  // },
 twilioService],
 })
 export class StudentsModule {}
