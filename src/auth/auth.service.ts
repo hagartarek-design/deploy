@@ -498,7 +498,11 @@ console.log(token);
     success: true,
     message: 'Logged in successfully',
     token,
-    refreshtoken,
+    refreshtoken,user: {
+    id: user.id,
+    email: user.email,
+    name: user.name,
+  }
   };
 }
 
