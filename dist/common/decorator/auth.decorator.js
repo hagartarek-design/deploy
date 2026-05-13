@@ -6,6 +6,6 @@ const auth_guard_1 = require("../Gaurds/auth.guard");
 const role_guard_1 = require("../Gaurds/role.guard");
 const role_decorator_1 = require("./role.decorator");
 function Auth(...roles) {
-    return (0, common_1.applyDecorators)((0, role_decorator_1.Roles)(...roles), (0, common_1.UseGuards)(auth_guard_1.AuthGuard, role_guard_1.RoleGuard));
+    return (0, common_1.applyDecorators)((0, role_decorator_1.Roles)(...roles), (0, common_1.UseGuards)(auth_guard_1.AuthGuard, role_guard_1.RolesGuard));
 }
 //# sourceMappingURL=auth.decorator.js.map

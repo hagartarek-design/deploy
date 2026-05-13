@@ -9,28 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.RoleGuard = void 0;
+exports.RolesGuard = void 0;
 const common_1 = require("@nestjs/common");
 const core_1 = require("@nestjs/core");
-let RoleGuard = class RoleGuard {
+let RolesGuard = class RolesGuard {
     constructor(reflector) {
         this.reflector = reflector;
     }
     canActivate(context) {
-        const roles = this.reflector.get('roles', context.getClass());
-        const publicVal = this.reflector.getAllAndMerge('public', [context.getClass(), context.getHandler()]);
-        if (publicVal[0] = "public")
+        const roles = this.reflector.get('roles', context.getHandler());
+        if (!roles) {
             return true;
+        }
         const request = context.switchToHttp().getRequest();
-        if (!roles.includes(request.user.role)) {
-            throw new common_1.UnauthorizedException('not allowed for you');
+        const user = request.user;
+        if (!roles.includes(user.role)) {
+            throw new common_1.ForbiddenException('You do not have permission');
         }
         return true;
     }
 };
-exports.RoleGuard = RoleGuard;
-exports.RoleGuard = RoleGuard = __decorate([
+exports.RolesGuard = RolesGuard;
+exports.RolesGuard = RolesGuard = __decorate([
     (0, common_1.Injectable)(),
     __metadata("design:paramtypes", [core_1.Reflector])
-], RoleGuard);
+], RolesGuard);
 //# sourceMappingURL=role.guard.js.map

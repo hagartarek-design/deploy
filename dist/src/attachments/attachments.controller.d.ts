@@ -25,8 +25,8 @@ export declare class AttachmentsController {
             };
         };
     }>;
-    findused(): Promise<import("@nestjs/common").ConflictException | import("./entities/attachment.entity").Attachment[]>;
-    findunused(): Promise<import("@nestjs/common").ConflictException | import("./entities/attachment.entity").Attachment[]>;
+    findused(): Promise<import("./entities/attachment.entity").Attachment[] | import("@nestjs/common").ConflictException>;
+    findunused(): Promise<import("./entities/attachment.entity").Attachment[] | import("@nestjs/common").ConflictException>;
     create(createAttachmentDto: CreateAttachmentDto): Promise<import("./entities/attachment.entity").Attachment>;
     findAll(status?: string): Promise<{
         courses: {

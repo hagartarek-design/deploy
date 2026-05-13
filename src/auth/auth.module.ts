@@ -25,7 +25,7 @@ import { GoogleAuthService } from './googleauthservice';
     secret: process.env.SECRET_KEY || 'your_secret_key',
     signOptions: { expiresIn: '1m' },
   }),
-],
+], 
   controllers: [AuthController,],
   providers: [AuthService,AuthService,
     GoogleAuthService,//JwtService

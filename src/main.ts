@@ -2,9 +2,12 @@
 import * as path from 'path';
 import {join} from 'path';
 import * as express from 'express';
-import { NestFactory } from '@nestjs/core';
+import { NestFactory, Reflector } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { NestExpressApplication } from '@nestjs/platform-express';
+import { AuthGuard } from './common/Gaurds/auth.guard';
+import { JwtService } from '@nestjs/jwt';
+import { RolesGuard } from 'common/Gaurds/role.guard';
 
 async function bootstrap() {
   const app = await NestFactory.create<NestExpressApplication>(AppModule);
@@ -18,6 +21,16 @@ async function bootstrap() {
   app.useStaticAssets(join(__dirname, '..', 'uploads', 'pdf-images'), {
     prefix: '/pdf-images/', // URL prefix
   });
+  const reflector = app.get(Reflector);
+
+  app.useGlobalGuards(
+    new AuthGuard(
+      app.get(JwtService),
+      reflector,
+    ),
+
+    new RolesGuard(reflector),
+  );
 
   app.enableCors({
     origin: true,

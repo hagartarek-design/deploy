@@ -35,8 +35,8 @@ export declare class AttachmentsService {
             };
         };
     }>;
-    findused(): Promise<ConflictException | Attachment[]>;
-    findunused(): Promise<ConflictException | Attachment[]>;
+    findused(): Promise<Attachment[] | ConflictException>;
+    findunused(): Promise<Attachment[] | ConflictException>;
     findAll(status?: string): Promise<{
         courses: {
             assignmentCount: number;

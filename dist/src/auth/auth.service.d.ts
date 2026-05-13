@@ -16,7 +16,7 @@ export declare class AuthService {
     register(email: string, password: string, phone: string, username: string, fullname: string): Promise<User>;
     studentregister(email: string, password: string, name: string, phoneNum: string, fullname: string): Promise<Student>;
     updateRefreshToken(userId: number, refreshToken: string | null): Promise<Student>;
-    refreshTokens(refreshToken: string): Promise<ConflictException | UnauthorizedException | {
+    refreshTokens(refreshToken: string): Promise<UnauthorizedException | ConflictException | {
         token: string;
     }>;
     loginstudent(email: string, password: string): Promise<UnauthorizedException | BadRequestException | {

@@ -212,14 +212,14 @@ import { RolesSeeder } from 'common/Gaurds/script';
 
 TypeOrmModule.forRoot({
   type: 'mysql',
-host: process.env.DB_HOST,
-port: Number(process.env.DB_PORT),
-username: process.env.DB_USERNAME,
-password: process.env.DB_PASSWORD,
-database: process.env.DB_DATABASE,
+  host: process.env.MYSQLHOST,
+  port: Number(process.env.MYSQLPORT),
+  username: process.env.MYSQLUSER,
+  password: process.env.MYSQLPASSWORD,
+  database: process.env.MYSQLDATABASE,
 
-  autoLoadEntities: true,
-  synchronize: true,
+  // autoLoadEntities: true,
+  synchronize: false,
 
   // retryAttempts: 10,
   // retryDelay: 5000,
