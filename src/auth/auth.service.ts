@@ -497,7 +497,7 @@ console.log(token);
   return {
     success: true,
     message: 'Logged in successfully',
-    token,
+    token,userId:user.id,
     refreshtoken,user: {
     id: user.id,
     email: user.email,
