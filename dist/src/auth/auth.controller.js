@@ -27,8 +27,8 @@ let AuthController = class AuthController {
         this.googleClient = new google_auth_library_1.OAuth2Client(process.env.GOOGLE_CLIENT_ID, process.env.GOOGLE_CLIENT_SECRET);
         this.googleClient2 = new google_auth_library_1.OAuth2Client(process.env.GOOGLE_CLIENT_ID2, process.env.GOOGLE_CLIENT_SECRET2);
     }
-    async googleLogin(idToken) {
-        return await this.authService.googleLogin(idToken);
+    async googleLogin(idToken, roles) {
+        return await this.authService.googleLogin(idToken, roles);
     }
     async studentGoogleLogin(idToken) {
         return await this.authService.studentGoogleLogin(idToken);
@@ -76,8 +76,9 @@ __decorate([
     (0, public_1.Public)(),
     (0, common_1.Post)('google-login'),
     __param(0, (0, common_1.Body)('idToken')),
+    __param(1, (0, common_1.Body)('roles')),
     __metadata("design:type", Function),
-    __metadata("design:paramtypes", [String]),
+    __metadata("design:paramtypes", [String, Object]),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "googleLogin", null);
 __decorate([

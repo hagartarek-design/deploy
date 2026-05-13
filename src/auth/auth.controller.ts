@@ -31,9 +31,9 @@ export class AuthController {
 
   @Public()
   @Post('google-login')
-  async googleLogin(@Body('idToken') idToken: string)
+  async googleLogin(@Body('idToken') idToken: string,@Body('roles') roles)
    {
-    return await this.authService.googleLogin(idToken);
+    return await this.authService.googleLogin(idToken,roles);
   }
   @Public()
   @Post('google-login/students')

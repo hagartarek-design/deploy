@@ -207,13 +207,13 @@ let AuthService = class AuthService {
             return error;
         }
     }
-    async googleLogin(idToken) {
+    async googleLogin(idToken, roles) {
         const { email, name, picture } = await this.verifyGoogleTokenTeacher(idToken);
         let user = await this.user.findOne({ where: { email } });
         console.log(user);
         if (!user) {
             user = this.user.create({
-                name: name,
+                name: name, user: { roles: roles },
                 email,
                 provider: 'google',
                 image: picture,
@@ -221,14 +221,19 @@ let AuthService = class AuthService {
             user.section = { id: user.id };
             await this.user.save(user);
         }
-        const token = this.jwtService.sign({ id: user.id, email: user.email }, { expiresIn: '1m' });
-        const refreshtoken = this.jwtService.sign({ id: user.id, email: user.email }, { expiresIn: '2m' });
+        const token = this.jwtService.sign({ id: user.id, email: user.email, roles: roles }, { expiresIn: '1m' });
+        const refreshtoken = this.jwtService.sign({ id: user.id, email: user.email, roles: roles }, { expiresIn: '2m' });
         console.log(token);
         return {
             success: true,
             message: 'Logged in successfully',
-            token,
-            refreshtoken,
+            token, userId: user.id,
+            refreshtoken, user: {
+                roles: roles,
+                id: user.id,
+                email: user.email,
+                name: user.name,
+            }
         };
     }
     async verifyIdTokenstudent(idToken) {

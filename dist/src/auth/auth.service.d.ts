@@ -55,11 +55,18 @@ export declare class AuthService {
         uid: string;
     }>;
     studentGoogleLogin(idToken: string): Promise<any>;
-    googleLogin(idToken: string): Promise<{
+    googleLogin(idToken: string, roles: any): Promise<{
         success: boolean;
         message: string;
         token: string;
+        userId: number;
         refreshtoken: string;
+        user: {
+            roles: any;
+            id: number;
+            email: string;
+            name: string;
+        };
     }>;
     verifyIdTokenstudent(idToken: string): Promise<TokenPayload>;
     verifyIdToken(idToken: string): Promise<TokenPayload>;

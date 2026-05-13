@@ -7,11 +7,18 @@ export declare class AuthController {
     constructor(authService: AuthService, googleAuthService: GoogleAuthService);
     private googleClient;
     private googleClient2;
-    googleLogin(idToken: string): Promise<{
+    googleLogin(idToken: string, roles: any): Promise<{
         success: boolean;
         message: string;
         token: string;
+        userId: number;
         refreshtoken: string;
+        user: {
+            roles: any;
+            id: number;
+            email: string;
+            name: string;
+        };
     }>;
     studentGoogleLogin(idToken: string): Promise<any>;
     verifyGoogleToken(idToken: any): Promise<void>;

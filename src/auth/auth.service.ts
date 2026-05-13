@@ -467,29 +467,29 @@ async studentGoogleLogin(idToken:string){
  
 // }
 
-async googleLogin(idToken: string) {
+async googleLogin(idToken: string,roles) {
   const { email, name, picture } = await this.verifyGoogleTokenTeacher(idToken);
   let user = await this.user.findOne({ where: { email } });
   console.log(user)
 
   if (!user) {
     user = this.user.create({
-      name: name,
+      name: name,user:{roles:roles},
       email,
       provider: 'google',
       image:picture,
     });
-    // user.section = { id:  user.id } as any;
+    user.section = { id:  user.id } as any;
     await this.user.save(user,);
   }
 
   const token = this.jwtService.sign(
-    { id: user.id , email:user.email},
+    { id: user.id , email:user.email,roles:roles},
     { expiresIn: '1m' },
   );
 
   const refreshtoken = this.jwtService.sign(
-    { id: user.id , email:user.email},
+    { id: user.id , email:user.email,roles:roles},
     { expiresIn: '2m' },
   );
 console.log(token);
@@ -499,6 +499,7 @@ console.log(token);
     message: 'Logged in successfully',
     token,userId:user.id,
     refreshtoken,user: {
+      roles:roles,
     id: user.id,
     email: user.email,
     name: user.name,
