@@ -9,7 +9,7 @@ export declare class StudentsController {
     typeonline(coursetype: string): Promise<import("./entities/student.entity").Student[]>;
     searchStu(search: string): Promise<import("./entities/student.entity").Student[]>;
     searchCourseId(search: string, id: number): Promise<import("./entities/student.entity").Student[]>;
-    profile(req: any): Promise<import("./entities/student.entity").Student>;
+    profile(req: Request): Promise<import("./entities/student.entity").Student>;
     search(search: string): Promise<import("../teacher/exams/entities/exam.entity").Exam[]>;
     mycourses(req: Request): Promise<import("./entities/student.entity").Student>;
     withpaginating(paginationDto: CreateStudentDto): Promise<import("./entities/student.entity").Student[]>;
@@ -17,7 +17,7 @@ export declare class StudentsController {
     addAnswer(id: number, addAnswerDto: addAnswerDto): Promise<import("@nestjs/common").NotFoundException | import("typeorm").UpdateResult>;
     upload(UpdateStudentDto: UpdateStudentDtoinfo, req: Request): Promise<import("typeorm").UpdateResult | import("@nestjs/common").ConflictException>;
     uploadFile(req: Request, file: Express.Multer.File): Promise<any>;
-    findbyId(id: number, req: any, page?: number, limit?: number, attendence?: boolean, exam_name?: string): Promise<import("./entities/student.entity").Student | BadRequestException | import("@nestjs/common").ForbiddenException>;
+    findbyId(id: number, req: any, page?: number, limit?: number, attendence?: boolean, exam_name?: string): Promise<BadRequestException | import("@nestjs/common").ForbiddenException | import("./entities/student.entity").Student>;
     getattendence(attendence: boolean, id: number): Promise<import("./entities/student.entity").Student>;
     findAll(): Promise<import("./entities/student.entity").Student[]>;
     saveinfo(createstudDto: createstudDto): Promise<import("./entities/student.entity").Student>;

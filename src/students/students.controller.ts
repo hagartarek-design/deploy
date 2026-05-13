@@ -47,11 +47,11 @@ async searchCourseId(@Query('search') search: string,@Query('id') id:number) {
 //   }
 
 @Get('profile')
-async profile(@Req() req: any) {
+async profile(@Req() req: Request) {
 
-  console.log(req.user);
+  console.log(req);
 
-  return await this.studentsService.profile(req.user.id);
+  return await this.studentsService.profile(req['user'].id);
 }
   @Get('filter/:id')
 async search(@Query('search') search: string) {

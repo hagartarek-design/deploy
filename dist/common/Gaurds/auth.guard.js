@@ -20,9 +20,8 @@ let AuthGuard = class AuthGuard {
     }
     canActivate(context) {
         const isPublic = this.reflector.get('Public', context.getHandler());
-        if (isPublic) {
+        if (isPublic)
             return true;
-        }
         const request = context.switchToHttp().getRequest();
         const authHeader = request.headers.authorization;
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
@@ -30,21 +29,19 @@ let AuthGuard = class AuthGuard {
         }
         const token = authHeader.split(' ')[1];
         try {
-            const decoded = this.jwtService.verify(token);
-            request['user'] = decoded;
-            console.log(decoded);
-            console.log(request.user);
+            const user = this.jwtService.verify(token);
+            request.user = user;
+            console.log(user);
             return true;
         }
         catch (error) {
-            throw new common_1.UnauthorizedException('Invalid or expired token');
+            throw new common_1.UnauthorizedException('Invalid or expired token', error);
         }
     }
 };
 exports.AuthGuard = AuthGuard;
 exports.AuthGuard = AuthGuard = __decorate([
     (0, common_1.Injectable)(),
-    __metadata("design:paramtypes", [jwt_1.JwtService,
-        core_1.Reflector])
+    __metadata("design:paramtypes", [jwt_1.JwtService, core_1.Reflector])
 ], AuthGuard);
 //# sourceMappingURL=auth.guard.js.map
