@@ -218,8 +218,8 @@ TypeOrmModule.forRoot({
   password: process.env.MYSQLPASSWORD,
   database: process.env.MYSQLDATABASE,
 
-  // autoLoadEntities: true,
-  synchronize: false,
+  autoLoadEntities: true,
+  synchronize: true,
 
   // retryAttempts: 10,
   // retryDelay: 5000,
