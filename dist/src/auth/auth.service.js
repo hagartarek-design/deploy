@@ -19,13 +19,15 @@ const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("../teacher/users/entities/user.entity");
 const typeorm_2 = require("typeorm");
 const bcrypt = require("bcrypt");
+const admin = require("firebase-admin");
 const jwt_1 = require("@nestjs/jwt");
 const student_entity_1 = require("../students/entities/student.entity");
 let AuthService = class AuthService {
-    constructor(user, students, firebaseAdmin, jwtService) {
+    constructor(user, students, firebaseAdmin, firebaseteacher, jwtService) {
         this.user = user;
         this.students = students;
         this.firebaseAdmin = firebaseAdmin;
+        this.firebaseteacher = firebaseteacher;
         this.jwtService = jwtService;
         this.client = new google_auth_library_1.OAuth2Client;
     }
@@ -146,6 +148,21 @@ let AuthService = class AuthService {
         catch (error) {
         }
     }
+    async verifyGoogleTokenTeacher(idToken) {
+        try {
+            const decodedToken = await this.firebaseteacher.auth().verifyIdToken(idToken);
+            return {
+                email: decodedToken.email,
+                name: decodedToken.name,
+                picture: decodedToken.picture,
+                uid: decodedToken.uid,
+            };
+        }
+        catch (error) {
+            console.error('Teacher Google token verification error:', error);
+            throw new Error('Invalid Google token');
+        }
+    }
     async verifyGoogleToken(idToken) {
         try {
             const decodedToken = await this.firebaseAdmin.auth().verifyIdToken(idToken);
@@ -153,11 +170,11 @@ let AuthService = class AuthService {
                 email: decodedToken.email,
                 name: decodedToken.name,
                 picture: decodedToken.picture,
-                uid: decodedToken.sub,
+                uid: decodedToken.uid,
             };
         }
         catch (error) {
-            console.error(' Google token verification error:', error);
+            console.error('Admin Google token verification error:', error);
             throw new Error('Invalid Google token');
         }
     }
@@ -191,7 +208,7 @@ let AuthService = class AuthService {
         }
     }
     async googleLogin(idToken) {
-        const { email, name, picture } = await this.verifyGoogleToken(idToken);
+        const { email, name, picture } = await this.verifyGoogleTokenTeacher(idToken);
         let user = await this.user.findOne({ where: { email } });
         console.log(user);
         if (!user) {
@@ -257,7 +274,8 @@ exports.AuthService = AuthService = __decorate([
     __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),
     __param(1, (0, typeorm_1.InjectRepository)(student_entity_1.Student)),
     __param(2, (0, common_1.Inject)('FIREBASE_ADMIN')),
+    __param(3, (0, common_1.Inject)('FIREBASE_TEACHER')),
     __metadata("design:paramtypes", [typeorm_2.Repository,
-        typeorm_2.Repository, Object, jwt_1.JwtService])
+        typeorm_2.Repository, Object, Object, jwt_1.JwtService])
 ], AuthService);
 //# sourceMappingURL=auth.service.js.map

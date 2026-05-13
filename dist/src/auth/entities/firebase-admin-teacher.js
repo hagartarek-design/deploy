@@ -6,35 +6,35 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.FirebaseAdminModule = void 0;
+exports.FirebaseTeacherModule = void 0;
 const common_1 = require("@nestjs/common");
 const admin = require("firebase-admin");
-const firebaseAdminProvider = {
-    provide: 'FIREBASE_ADMIN',
+const firebaseteacherProvider = {
+    provide: 'FIREBASE_TEACHER',
     useFactory: () => {
-        const appName = 'admin-app';
+        const appName = 'teacher-app';
         const existingApp = admin.apps.find(app => app.name === appName);
         if (existingApp) {
             return existingApp;
         }
         const serviceAccount = {
-            project_id: process.env.FIREBASE_PROJECT_ID,
-            client_email: process.env.FIREBASE_CLIENT_EMAIL,
-            private_key: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+            project_id: process.env.FIREBASE_PROJECT_ID2,
+            client_email: process.env.FIREBASE_CLIENT_EMAIL2,
+            private_key: process.env.FIREBASE_PRIVATE_KEY2?.replace(/\\n/g, '\n'),
         };
         return admin.initializeApp({
             credential: admin.credential.cert(serviceAccount),
         }, appName);
     },
 };
-let FirebaseAdminModule = class FirebaseAdminModule {
+let FirebaseTeacherModule = class FirebaseTeacherModule {
 };
-exports.FirebaseAdminModule = FirebaseAdminModule;
-exports.FirebaseAdminModule = FirebaseAdminModule = __decorate([
+exports.FirebaseTeacherModule = FirebaseTeacherModule;
+exports.FirebaseTeacherModule = FirebaseTeacherModule = __decorate([
     (0, common_1.Global)(),
     (0, common_1.Module)({
-        providers: [firebaseAdminProvider],
-        exports: [firebaseAdminProvider],
+        providers: [firebaseteacherProvider],
+        exports: [firebaseteacherProvider],
     })
-], FirebaseAdminModule);
-//# sourceMappingURL=firebase-admin.js.map
+], FirebaseTeacherModule);
+//# sourceMappingURL=firebase-admin-teacher.js.map

@@ -31,30 +31,34 @@
 // export class FirebaseAdminModule {}
 import { Module, Global } from '@nestjs/common';
 import * as admin from 'firebase-admin';
-
 const firebaseteacherProvider = {
   provide: 'FIREBASE_TEACHER',
 
   useFactory: () => {
-    if (admin.apps.length === 0) {
+    const appName = 'teacher-app';
 
-      const serviceAccount = {
-        project_id: process.env.FIREBASE_PROJECT_ID2,
-        client_email: process.env.FIREBASE_CLIENT_EMAIL2,
-        private_key: process.env.FIREBASE_PRIVATE_KEY2?.replace(/\\n/g, '\n'),
-      };
+    const existingApp = admin.apps.find(app => app.name === appName);
 
-      console.log(serviceAccount);
-
-      admin.initializeApp({
-        credential: admin.credential.cert(serviceAccount as admin.ServiceAccount),
-      });
+    if (existingApp) {
+      return existingApp;
     }
 
-    return admin;
+    const serviceAccount = {
+      project_id: process.env.FIREBASE_PROJECT_ID2,
+      client_email: process.env.FIREBASE_CLIENT_EMAIL2,
+      private_key: process.env.FIREBASE_PRIVATE_KEY2?.replace(/\\n/g, '\n'),
+    };
+
+    return admin.initializeApp(
+      {
+        credential: admin.credential.cert(
+          serviceAccount as admin.ServiceAccount,
+        ),
+      },
+      appName,
+    );
   },
 };
-
 @Global()
 @Module({
   providers: [firebaseteacherProvider],

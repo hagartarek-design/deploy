@@ -31,9 +31,9 @@ export class AuthService {
 //  ,
 //  @InjectRepository(User) private readonly users:Repository<User>
 ,
-@Inject('FIREBASE_ADMIN') private readonly firebaseAdmin: typeof admin
+@Inject('FIREBASE_ADMIN') private readonly firebaseAdmin:  admin.app.App
 
-,@Inject ('FIREBASE_TEACHER') private readonly firebaseteacher:typeof admin,
+,@Inject ('FIREBASE_TEACHER') private readonly firebaseteacher:admin.app.App,
 private jwtService:JwtService
 ){
 // const clientId = this.configService.get<string>('64872570774-tb7fkjbp00lat65nkdnk1o0buqtf4oc3.apps.googleusercontent.com');
@@ -348,32 +348,35 @@ async verifystudentToken(idtoken:string){
     
   }
 }
-
 async verifyGoogleTokenTeacher(idToken: string) {
   try {
-    const decodedToken = await this.firebaseteacher.auth().verifyIdToken(idToken);
+    const decodedToken =
+      await this.firebaseteacher.auth().verifyIdToken(idToken);
+
     return {
       email: decodedToken.email,
       name: decodedToken.name,
       picture: decodedToken.picture,
-      uid: decodedToken.sub,
+      uid: decodedToken.uid,
     };
   } catch (error) {
-    console.error(' Google token verification error:', error);
+    console.error('Teacher Google token verification error:', error);
     throw new Error('Invalid Google token');
   }
 }
 async verifyGoogleToken(idToken: string) {
   try {
-    const decodedToken = await this.firebaseAdmin.auth().verifyIdToken(idToken);
+    const decodedToken =
+      await this.firebaseAdmin.auth().verifyIdToken(idToken);
+
     return {
       email: decodedToken.email,
       name: decodedToken.name,
       picture: decodedToken.picture,
-      uid: decodedToken.sub,
+      uid: decodedToken.uid,
     };
   } catch (error) {
-    console.error(' Google token verification error:', error);
+    console.error('Admin Google token verification error:', error);
     throw new Error('Invalid Google token');
   }
 }

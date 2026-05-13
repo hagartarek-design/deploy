@@ -9,10 +9,11 @@ export declare class AuthService {
     private user;
     private readonly students;
     private readonly firebaseAdmin;
+    private readonly firebaseteacher;
     private jwtService;
     private client;
     private readonly configService;
-    constructor(user: Repository<User>, students: Repository<Student>, firebaseAdmin: typeof admin, jwtService: JwtService);
+    constructor(user: Repository<User>, students: Repository<Student>, firebaseAdmin: admin.app.App, firebaseteacher: admin.app.App, jwtService: JwtService);
     register(email: string, password: string, phone: string, username: string, fullname: string): Promise<User>;
     studentregister(email: string, password: string, name: string, phoneNum: string, fullname: string): Promise<Student>;
     updateRefreshToken(userId: number, refreshToken: string | null): Promise<Student>;
@@ -38,6 +39,12 @@ export declare class AuthService {
     verifystudentToken(idtoken: string): Promise<{
         email: string;
         name: import("firebase-admin/lib/auth/token-verifier").DecodedIdToken;
+        picture: string;
+        uid: string;
+    }>;
+    verifyGoogleTokenTeacher(idToken: string): Promise<{
+        email: string;
+        name: any;
         picture: string;
         uid: string;
     }>;

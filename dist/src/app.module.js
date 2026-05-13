@@ -73,6 +73,7 @@ const user_entity_2 = require("./users/entities/user.entity");
 const dynamicrolegaurd_1 = require("../common/Gaurds/dynamicrolegaurd");
 const mockdynamicroles_1 = require("../common/Gaurds/mockdynamicroles");
 const script_1 = require("../common/Gaurds/script");
+const firebase_admin_teacher_1 = require("./auth/entities/firebase-admin-teacher");
 let AppModule = class AppModule {
 };
 exports.AppModule = AppModule;
@@ -83,6 +84,7 @@ exports.AppModule = AppModule = __decorate([
                 isGlobal: true,
             }),
             firebase_admin_1.FirebaseAdminModule,
+            firebase_admin_teacher_1.FirebaseTeacherModule,
             typeorm_1.TypeOrmModule.forRoot({
                 type: "mysql",
                 host: process.env.DB_HOST,

@@ -13,7 +13,7 @@ import { GoogleAuthService } from './googleauthservice';
     ConfigModule.forRoot({isGlobal: true,}),
     TypeOrmModule.forFeature([User,Student]), 
    
-    
+    // firebaseAdminProvider,
     
     // JwtModule.register({
     //   secret:process.env.SECRET_Key||"", 
