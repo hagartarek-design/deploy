@@ -466,6 +466,7 @@ async studentGoogleLogin(idToken:string){
 // }
  
 // }
+
 async googleLogin(idToken: string) {
   const { email, name, picture } = await this.verifyGoogleTokenTeacher(idToken);
   let user = await this.user.findOne({ where: { email } });
@@ -478,7 +479,7 @@ async googleLogin(idToken: string) {
       provider: 'google',
       image:picture,
     });
-    user.section = { id: user.id } as any;
+    // user.section = { id:  user.id } as any;
     await this.user.save(user,);
   }
 
