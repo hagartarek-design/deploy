@@ -201,6 +201,7 @@ import { Users } from './users/entities/user.entity';
 import { DynamicRoleGuard } from 'common/Gaurds/dynamicrolegaurd';
 import { JwtAuthGuard } from 'common/Gaurds/mockdynamicroles';
 import { RolesSeeder } from 'common/Gaurds/script';
+import { FirebaseTeacherModule } from './auth/entities/firebase-admin-teacher';
 
 @Module({
   imports: [
@@ -209,7 +210,7 @@ import { RolesSeeder } from 'common/Gaurds/script';
     }),
 
     FirebaseAdminModule,
-
+FirebaseTeacherModule,
  TypeOrmModule.forRoot({
        type:"mysql",
         host:process.env.DB_HOST,

@@ -60,4 +60,4 @@ const firebaseteacherProvider = {
   providers: [firebaseteacherProvider],
   exports: [firebaseteacherProvider],
 })
-export class FirebaseAdminModule {}
+export class FirebaseTeacherModule {}
