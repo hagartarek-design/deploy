@@ -12,7 +12,6 @@ import * as admin from 'firebase-admin';
 import { JwtService } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { Student } from 'src/students/entities/student.entity';
-import { UsersService } from './../teacher/users/users.service';
 @Injectable()
 export class AuthService {
   // private readonly client: OAuth2Client;
@@ -31,9 +30,11 @@ export class AuthService {
  @InjectRepository(Student) private readonly students:Repository<Student>
 //  ,
 //  @InjectRepository(User) private readonly users:Repository<User>
-,@Inject('FIREBASE_ADMIN') private readonly firebaseAdmin: typeof admin
+,
+@Inject('FIREBASE_ADMIN') private readonly firebaseAdmin: typeof admin
 
-,private jwtService:JwtService
+,@Inject ('FIREBASE_TEACHER') private readonly firebaseteacher:typeof admin,
+private jwtService:JwtService
 ){
 // const clientId = this.configService.get<string>('64872570774-tb7fkjbp00lat65nkdnk1o0buqtf4oc3.apps.googleusercontent.com');
 //     this.client = new OAuth2Client(clientId);
@@ -348,6 +349,20 @@ async verifystudentToken(idtoken:string){
   }
 }
 
+async verifyGoogleTokenTeacher(idToken: string) {
+  try {
+    const decodedToken = await this.firebaseteacher.auth().verifyIdToken(idToken);
+    return {
+      email: decodedToken.email,
+      name: decodedToken.name,
+      picture: decodedToken.picture,
+      uid: decodedToken.sub,
+    };
+  } catch (error) {
+    console.error(' Google token verification error:', error);
+    throw new Error('Invalid Google token');
+  }
+}
 async verifyGoogleToken(idToken: string) {
   try {
     const decodedToken = await this.firebaseAdmin.auth().verifyIdToken(idToken);
@@ -449,7 +464,7 @@ async studentGoogleLogin(idToken:string){
  
 // }
 async googleLogin(idToken: string) {
-  const { email, name, picture } = await this.verifyGoogleToken(idToken);
+  const { email, name, picture } = await this.verifyGoogleTokenTeacher(idToken);
   let user = await this.user.findOne({ where: { email } });
   console.log(user)
 
