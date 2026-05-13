@@ -399,6 +399,8 @@ async studentGoogleLogin(idToken:string){
       { id: students.id, email: students.email },
       { secret: process.env.SECRET_KEY, expiresIn: '2d' }, 
     );
+    console.log('id:'+token);
+    
 
     const refreshtoken = this.jwtService.sign(
       { id: students.id, email: students.email },
