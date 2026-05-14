@@ -18,8 +18,8 @@ const auth_service_1 = require("./auth.service");
 const google_auth_library_1 = require("google-auth-library");
 const public_1 = require("./entities/public");
 const create_auth_dto_1 = require("./dto/create-auth.dto");
-const passport_1 = require("@nestjs/passport");
 const googleauthservice_1 = require("./googleauthservice");
+const auth_guard_1 = require("@nestjs/passport/dist/auth.guard");
 let AuthController = class AuthController {
     constructor(authService, googleAuthService) {
         this.authService = authService;
@@ -156,14 +156,14 @@ __decorate([
 ], AuthController.prototype, "changePassword", null);
 __decorate([
     (0, common_1.Get)('google'),
-    (0, common_1.UseGuards)((0, passport_1.AuthGuard)('google')),
+    (0, common_1.UseGuards)((0, auth_guard_1.AuthGuard)('google')),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", []),
     __metadata("design:returntype", Promise)
 ], AuthController.prototype, "googleAuth", null);
 __decorate([
     (0, common_1.Get)('google/callback'),
-    (0, common_1.UseGuards)((0, passport_1.AuthGuard)('google')),
+    (0, common_1.UseGuards)((0, auth_guard_1.AuthGuard)('google')),
     __param(0, (0, common_1.Req)()),
     __param(1, (0, common_1.Res)()),
     __metadata("design:type", Function),

@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CodeController = void 0;
 const common_1 = require("@nestjs/common");
 const code_service_1 = require("./code.service");
-const auth_guard_1 = require("@nestjs/passport/dist/auth.guard");
+const auth_guard_1 = require("../../common/Gaurds/auth.guard");
 let CodeController = class CodeController {
     constructor(codeService) {
         this.codeService = codeService;

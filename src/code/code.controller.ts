@@ -4,7 +4,8 @@ import { CreateCodeDto } from './dto/create-code.dto';
 import { UpdateCodeDto } from './dto/update-code.dto';
 import { Request } from 'express';
 import { Public } from 'common/decorator/public.decorator';
-import { AuthGuard } from '@nestjs/passport/dist/auth.guard';
+import { AuthGuard } from 'common/Gaurds/auth.guard';
+// import { AuthGuard } from '@nestjs/passport/dist/auth.guard';
 @UseGuards(AuthGuard)
 @Controller('attachments')
 @Controller('code')

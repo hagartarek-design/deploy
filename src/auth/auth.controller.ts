@@ -1,12 +1,13 @@
-import { Controller, Get, Post, Body, Request, Req, Put, UseGuards, Res, HttpException, HttpStatus, 
+import { Controller, Get, Post, Body, Request, Req, Put, UseGuards, Res, 
   // UseGuards, 
 } from '@nestjs/common';
 import { AuthService } from './auth.service';
 import { OAuth2Client } from 'google-auth-library';
 import { Public } from './entities/public';
 import { CreateAuthDto } from './dto/create-auth.dto';
-import { AuthGuard } from '@nestjs/passport';
+// import { AuthGuard } from '@nestjs/passport';
 import { GoogleAuthService } from './googleauthservice';
+import { AuthGuard } from '@nestjs/passport/dist/auth.guard';
 // import { AuthGuard } from './auth.guard';
 
 @Controller('auth')
