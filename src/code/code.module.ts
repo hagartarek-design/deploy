@@ -12,9 +12,10 @@ import { Cart } from 'src/cart/entities/cart.entity';
 // import { Code } from 'typeorm';
 
 
+import { JwtService } from '@nestjs/jwt';
 @Module({
   imports:[TypeOrmModule.forFeature([Code,Student,Course,Section,Attachment,Cart])],
-  controllers: [CodeController],
-  providers: [CodeService],
+controllers: [CodeController],
+  providers: [CodeService,JwtService],
 })
 export class CodeModule {}

@@ -1,10 +1,12 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Req, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Req, Query, UseGuards } from '@nestjs/common';
 import { CodeService } from './code.service';
 import { CreateCodeDto } from './dto/create-code.dto';
 import { UpdateCodeDto } from './dto/update-code.dto';
 import { Request } from 'express';
 import { Public } from 'common/decorator/public.decorator';
-
+import { AuthGuard } from '@nestjs/passport/dist/auth.guard';
+@UseGuards(AuthGuard)
+@Controller('attachments')
 @Controller('code')
 export class CodeController {
   constructor(private readonly codeService: CodeService) {}

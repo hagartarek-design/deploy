@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CodeController = void 0;
 const common_1 = require("@nestjs/common");
 const code_service_1 = require("./code.service");
+const auth_guard_1 = require("@nestjs/passport/dist/auth.guard");
 let CodeController = class CodeController {
     constructor(codeService) {
         this.codeService = codeService;
@@ -96,6 +97,8 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CodeController.prototype, "clearcart", null);
 exports.CodeController = CodeController = __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
+    (0, common_1.Controller)('attachments'),
     (0, common_1.Controller)('code'),
     __metadata("design:paramtypes", [code_service_1.CodeService])
 ], CodeController);
