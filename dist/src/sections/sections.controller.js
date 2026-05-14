@@ -29,7 +29,7 @@ let SectionsController = class SectionsController {
         const { page, limit } = paginationDto;
         if (page && limit) {
             const offset = (page - 1) * limit;
-            return this.sectionsService.withpaginatingsections(req.user.id, offset, limit);
+            return this.sectionsService.withpaginatingsections(req['user'].id, offset, limit);
         }
         else {
             return this.sectionsService.allsections(req.user.id);
