@@ -36,8 +36,8 @@ let StudentsController = class StudentsController {
         return await this.studentsService.searchCourseId(search || '', id);
     }
     async profile(req) {
-        console.log(req);
-        return await this.studentsService.profile(req['user'].id);
+        console.log(req.user);
+        return await this.studentsService.profile(req.user.id);
     }
     async search(search) {
         return this.studentsService.search(search || '');
@@ -207,6 +207,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], StudentsController.prototype, "saveinfo", null);
 exports.StudentsController = StudentsController = __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     (0, common_1.Controller)('students'),
     __metadata("design:paramtypes", [students_service_1.StudentsService])
 ], StudentsController);

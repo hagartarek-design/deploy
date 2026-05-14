@@ -2,6 +2,7 @@ import { BadRequestException } from '@nestjs/common';
 import { StudentsService } from './students.service';
 import { addAnswerDto, CreateStudentDto, createstudDto, sendOtpDTO, UpdateStudentDtoinfo } from './dto/create-student.dto';
 import { Request } from 'express';
+import { AuthRequest } from 'common/interfaces/auth-request.interface';
 export declare class StudentsController {
     private readonly studentsService;
     constructor(studentsService: StudentsService);
@@ -9,7 +10,7 @@ export declare class StudentsController {
     typeonline(coursetype: string): Promise<import("./entities/student.entity").Student[]>;
     searchStu(search: string): Promise<import("./entities/student.entity").Student[]>;
     searchCourseId(search: string, id: number): Promise<import("./entities/student.entity").Student[]>;
-    profile(req: Request): Promise<import("./entities/student.entity").Student>;
+    profile(req: AuthRequest): Promise<import("./entities/student.entity").Student>;
     search(search: string): Promise<import("../teacher/exams/entities/exam.entity").Exam[]>;
     mycourses(req: Request): Promise<import("./entities/student.entity").Student>;
     withpaginating(paginationDto: CreateStudentDto): Promise<import("./entities/student.entity").Student[]>;

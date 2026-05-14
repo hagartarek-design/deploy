@@ -30,6 +30,7 @@ let AssignmentsController = class AssignmentsController {
         return response;
     }
     findAll(req) {
+        console.log(req);
         return this.assignmentsService.findAll(req.user.id);
     }
     async withpaginatingsections(req, paginationDto) {

@@ -33,6 +33,8 @@ export class AssignmentsController {
     }
   @Get()
   findAll(@Request()req,) {
+    console.log(req);
+    
     return this.assignmentsService.findAll(req.user.id);
   }
   @Get('paginate')

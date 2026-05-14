@@ -6,9 +6,11 @@ import { Public } from 'src/auth/entities/public';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { Request } from 'express';
 import { AuthGuard } from 'common/Gaurds/auth.guard';
-
-
+import { AuthRequest } from 'common/interfaces/auth-request.interface';
+// import { AuthRequest } from 'src/common/interfaces/auth-request.interface';
+@UseGuards(AuthGuard)
 @Controller('students')
+
 export class StudentsController {
   constructor(private readonly studentsService: StudentsService) {}
 @Public()
@@ -47,11 +49,11 @@ async searchCourseId(@Query('search') search: string,@Query('id') id:number) {
 //   }
 
 @Get('profile')
-async profile(@Req() req: Request) {
+async profile(@Req() req: AuthRequest) {
 
-  console.log(req);
+  console.log(req.user);
 
-  return await this.studentsService.profile(req['user'].id);
+  return await this.studentsService.profile(req.user.id);
 }
   @Get('filter/:id')
 async search(@Query('search') search: string) {
