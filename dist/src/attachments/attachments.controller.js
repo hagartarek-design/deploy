@@ -23,10 +23,10 @@ let AttachmentsController = class AttachmentsController {
         this.attachmentsService = attachmentsService;
     }
     async addToCart(req, id) {
-        return await this.attachmentsService.addToCart(req['student'].id, id);
+        return await this.attachmentsService.addToCart(req['user'].id, id);
     }
     async addlessontocart(req, id) {
-        return await this.attachmentsService.addlessontocart(req['student'].id, id);
+        return await this.attachmentsService.addlessontocart(req['user'].id, id);
     }
     async findused() {
         return await this.attachmentsService.findused();

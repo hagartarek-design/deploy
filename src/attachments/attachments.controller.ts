@@ -10,14 +10,14 @@ export class AttachmentsController {
   constructor(private readonly attachmentsService: AttachmentsService) {}
 @Post('addtocart/:id')
 async addToCart(@Req() req:Request,@Param('id') id:number,){
-return await this.attachmentsService.addToCart(req['student'].id,id);
-}
+return await this.attachmentsService.addToCart(req['user'].id,id);
+} 
 @Post('addlessontocart/:id')
 async addlessontocart(
 @Req()req:Request,
 @Param('id') id:number
 ){
-  return await this.attachmentsService.addlessontocart(req['student'].id,id);
+  return await this.attachmentsService.addlessontocart(req['user'].id,id);
 }
 @Get('allusedattach')
 async findused(){
