@@ -9,10 +9,11 @@ import { Course } from 'src/courses/entities/course.entity';
 import { Cart } from 'src/cart/entities/cart.entity';
 import { Student } from 'src/students/entities/student.entity';
 import { Lesson } from 'src/teacher/lesson/entities/lesson.entity';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
   imports:[TypeOrmModule.forFeature([Attachment,Exam,Assignment,Course,Cart,Student,Lesson])],
   controllers: [AttachmentsController],
-  providers: [AttachmentsService],
+  providers: [AttachmentsService,JwtService],
 })
 export class AttachmentsModule {}

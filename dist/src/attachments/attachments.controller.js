@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const attachments_service_1 = require("./attachments.service");
 const create_attachment_dto_1 = require("./dto/create-attachment.dto");
 const update_attachment_dto_1 = require("./dto/update-attachment.dto");
+const auth_guard_1 = require("../common/Gaurds/auth.guard");
 let AttachmentsController = class AttachmentsController {
     constructor(attachmentsService) {
         this.attachmentsService = attachmentsService;
@@ -115,6 +116,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], AttachmentsController.prototype, "remove", null);
 exports.AttachmentsController = AttachmentsController = __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     (0, common_1.Controller)('attachments'),
     __metadata("design:paramtypes", [attachments_service_1.AttachmentsService])
 ], AttachmentsController);
