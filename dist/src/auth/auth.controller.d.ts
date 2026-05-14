@@ -26,11 +26,9 @@ export declare class AuthController {
         token: string;
         studentId: number;
         refreshtoken: string;
-        student: {
-            id: number;
-            email: string;
-            name: string;
-        };
+        id: number;
+        email: string;
+        name: string;
     }>;
     verifyGoogleToken(idToken: any): Promise<void>;
     login(email: string, password: string): Promise<import("@nestjs/common").UnauthorizedException | import("@nestjs/common").BadRequestException | {

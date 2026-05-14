@@ -226,11 +226,10 @@ let AuthService = class AuthService {
             success: true,
             message: 'Logged in successfully',
             token, studentId: student.id,
-            refreshtoken, student: {
-                id: student.id,
-                email: student.email,
-                name: student.name,
-            }
+            refreshtoken,
+            id: student.id,
+            email: student.email,
+            name: student.name,
         };
     }
     async verifyIdTokenstudent(idToken) {

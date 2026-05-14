@@ -540,13 +540,13 @@ console.log(token);
     success: true,
     message: 'Logged in successfully',
     token,studentId:student.id,
-    refreshtoken,student: {
+    refreshtoken,
   
     id: student.id,
     email: student.email,
     name: student.name,
   }
-  };
+  
 }
 
 

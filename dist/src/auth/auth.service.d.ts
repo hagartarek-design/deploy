@@ -73,11 +73,9 @@ export declare class AuthService {
         token: string;
         studentId: number;
         refreshtoken: string;
-        student: {
-            id: number;
-            email: string;
-            name: string;
-        };
+        id: number;
+        email: string;
+        name: string;
     }>;
     verifyIdTokenstudent(idToken: string): Promise<TokenPayload>;
     verifyIdToken(idToken: string): Promise<TokenPayload>;
