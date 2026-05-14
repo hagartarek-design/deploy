@@ -1,4 +1,4 @@
-import { Controller, Get, Body, Patch, Param, Delete, Query, Post, Req, ParseIntPipe } from '@nestjs/common';
+import { Controller, Get, Body, Patch, Param, Delete, Query, Post, Req, ParseIntPipe, UseGuards } from '@nestjs/common';
 import { UserquestionService } from './userquestion.service';
 import { createanswerDto, } from './dto/create-userquestion.dto';
 import { Request } from 'express';
@@ -9,7 +9,8 @@ import { Lesson } from '../lesson/entities/lesson.entity';
 
 import { Repository } from 'typeorm';
 import { Userquestion } from './entities/userquestion.entity';
-
+import { AuthGuard } from 'src/common/Gaurds/auth.guard';
+@UseGuards(AuthGuard)
 @Controller('userquestion')
 export class UserquestionController {
   constructor(private readonly userquestionService: UserquestionService,

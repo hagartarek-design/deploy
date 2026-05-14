@@ -21,6 +21,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const lesson_entity_1 = require("../lesson/entities/lesson.entity");
 const typeorm_2 = require("typeorm");
 const userquestion_entity_1 = require("./entities/userquestion.entity");
+const auth_guard_1 = require("../../common/Gaurds/auth.guard");
 let UserquestionController = class UserquestionController {
     constructor(userquestionService, lessons, questionrepo) {
         this.userquestionService = userquestionService;
@@ -156,6 +157,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UserquestionController.prototype, "questionsexams", null);
 exports.UserquestionController = UserquestionController = __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     (0, common_1.Controller)('userquestion'),
     __param(1, (0, typeorm_1.InjectRepository)(lesson_entity_1.Lesson)),
     __param(2, (0, typeorm_1.InjectRepository)(userquestion_entity_1.Userquestion)),
