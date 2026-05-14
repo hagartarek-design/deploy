@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DynamicRoleGuard = void 0;
 const common_1 = require("@nestjs/common");
 const typeorm_1 = require("typeorm");
-const role_entity_1 = require("../../src/role/entities/role.entity");
+const role_entity_1 = require("../../role/entities/role.entity");
 let DynamicRoleGuard = class DynamicRoleGuard {
     constructor(dataSource) {
         this.dataSource = dataSource;

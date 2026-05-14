@@ -23,7 +23,7 @@ id:number
 users: Users;
 
   @Column('simple-array', { nullable: true })
-  usedCards: string[];
+  usedCards: string[]; 
   @Column({default:false})
   isUsed:boolean
  @ManyToMany(() => Code, (card) => card.students, { cascade: true })

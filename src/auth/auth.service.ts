@@ -205,7 +205,7 @@ console.log(isMatch);
     
 const token = this.jwtService.sign(
       { id: student.id, email: student.email },
-      { secret: process.env.SECRET_KEY, expiresIn: '1m' },   
+      { secret: process.env.SECRET_KEY||'secret-key', expiresIn: '1m' },   
     );
 
     return { token };
@@ -233,7 +233,7 @@ async loginstudent(email:string,password:string){
     return new BadRequestException()
   }
 
-  const token = this.jwtService.sign({ id: students.id, email: students.email }, {secret:process.env.SECRET_KEY ,expiresIn: '1m' });
+  const token = this.jwtService.sign({ id: students.id, email: students.email }, {secret:process.env.SECRET_KEY||'secret-key' ,expiresIn: '1m' });
 const refreshtoken=this.jwtService.sign({id:students.id,email:students.email},{secret:process.env.REFRESH_SECRET,expiresIn:'15h'})
 const hashedrefreshtoken = await bcrypt.hash(refreshtoken,10);
   await this.students.update(students.id, { refreshToken: hashedrefreshtoken });
@@ -512,7 +512,7 @@ console.log(token);
 async studentGoogleLogin(idToken: string,) {
   const { email, name,  } = await this.verifyGoogleToken(idToken);
   let student = await this.students.findOne({ where: { email } });
-  console.log(student)
+  // console.log(student)
 
   if (!student) {
     student = this.students.create({
@@ -532,16 +532,15 @@ async studentGoogleLogin(idToken: string,) {
 
   const refreshtoken = this.jwtService.sign(
     { id: student.id , email:student.email,},
-    { expiresIn: '2d' },
+    { expiresIn: '2h' },
   );
-console.log(token);
+// console.log(token);
 
   return {
     success: true,
     message: 'Logged in successfully',
     token,studentId:student.id,
     refreshtoken,
-  
     id: student.id,
     email: student.email,
     name: student.name,

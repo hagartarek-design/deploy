@@ -3,7 +3,8 @@ import { ExamsService } from './exams.service';
 import { createExamDto, CreateExamDto } from './dto/create-exam.dto';
 import { UpdateExamDto } from './dto/update-exam.dto';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { AuthGuard } from 'common/Gaurds/auth.guard';
+import { AuthGuard } from 'src/common/Gaurds/auth.guard';
+// import { AuthGuard } from 'common/Gaurds/auth.guard';
 
 @Controller('exams')
 export class ExamsController {

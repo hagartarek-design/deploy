@@ -3,8 +3,10 @@ import { RoleService } from './role.service';
 import { CreateRoleDto } from './dto/create-role.dto';
 import { UpdateRoleDto } from './dto/update-role.dto';
 import {  UseGuards } from '@nestjs/common';
-import { JwtAuthGuard } from 'common/Gaurds/mockdynamicroles';
-import { DynamicRoleGuard } from 'common/Gaurds/dynamicrolegaurd';
+// import { JwtAuthGuard } from 'common/Gaurds/mockdynamicroles';
+import { DynamicRoleGuard } from 'src/common/Gaurds/dynamicrolegaurd';
+import { JwtAuthGuard } from 'src/common/Gaurds/mockdynamicroles';
+// import { DynamicRoleGuard } from 'common/Gaurds/dynamicrolegaurd';
 @UseGuards(JwtAuthGuard, DynamicRoleGuard)
 
 @Controller('role')

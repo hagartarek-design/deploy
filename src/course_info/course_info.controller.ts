@@ -2,11 +2,12 @@ import { Controller, Get, Post, Body, Patch, Param, Delete,Query, UseInterceptor
 import { CourseInfoService } from './course_info.service';
 import { CreateCourseInfoDto } from './dto/create-course_info.dto';
 import { UpdateCourseInfoDto } from './dto/update-course_info.dto';
-import { Public } from 'common/decorator/public.decorator';
+// import { Public } from 'common/decorator/public.decorator';
 import { FileInterceptor } from '@nestjs/platform-express';
 import { diskStorage } from 'multer';
 import { Response } from 'express';
 import { join } from 'path';
+import { Public } from 'src/common/decorator/public.decorator';
 
 
 @Controller('course-info')

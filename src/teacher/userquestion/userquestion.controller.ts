@@ -2,7 +2,7 @@ import { Controller, Get, Body, Patch, Param, Delete, Query, Post, Req, ParseInt
 import { UserquestionService } from './userquestion.service';
 import { createanswerDto, } from './dto/create-userquestion.dto';
 import { Request } from 'express';
-import { Public } from 'common/decorator/public.decorator';
+// import { Public } from 'common/decorator/public.decorator';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Lesson } from '../lesson/entities/lesson.entity';
 // import {public } from './'
@@ -10,6 +10,7 @@ import { Lesson } from '../lesson/entities/lesson.entity';
 import { Repository } from 'typeorm';
 import { Userquestion } from './entities/userquestion.entity';
 import { AuthGuard } from 'src/common/Gaurds/auth.guard';
+import { Public } from 'src/common/decorator/public.decorator';
 @UseGuards(AuthGuard)
 @Controller('userquestion')
 export class UserquestionController {

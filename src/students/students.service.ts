@@ -7,7 +7,7 @@ import { User } from 'src/teacher/users/entities/user.entity';
 import { Image } from 'src/teacher/images/entities/image.entity';
 import { Exam } from 'src/teacher/exams/entities/exam.entity';
 import { addAnswerDto, createstudDto, CreateStudentDto, sendOtpDTO, UpdateStudentDtoinfo } from './dto/create-student.dto';
-import { twilioService } from 'common/smsotp';
+// import { twilioService } from 'common/smsotp';
 // import { AuthGuard } from '@nestjs/passport';
 // import { Student } from 'src/students/entities/student.entity';
 import { UpdateStudentCourseDto } from './../student_course/dto/update-student_course.dto';
@@ -21,7 +21,7 @@ export class StudentsService {
     @InjectRepository(Exam) private readonly examrepo:Repository<Exam>,
     // @InjectRepository(Userquestion) private readonly userques:Repository<Userquestion>,
  @InjectRepository(Student) private readonly repository:Repository<Student>
-,private readonly twilioservice:twilioService
+// ,private readonly twilioservice:twilioService
 ){}
   // create(createStudentDto: CreateStudentDto) {
   //   return 'This action adds a new student';
@@ -31,7 +31,7 @@ async sendSmsOtp(sendOtpDTO:sendOtpDTO){
 const {phoneNum}=sendOtpDTO;
 const otp= Math.floor(100000 + Math.random() * 900000).toString();
 const createotp= await this.repository.create({phoneNum,otp,createdAt:new Date()})
-await this.twilioservice.sendsmsotp(phoneNum,otp)
+// await this.twilioservice.sendsmsotp(phoneNum,otp)
 return createotp;
 }
 

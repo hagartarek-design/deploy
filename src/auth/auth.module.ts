@@ -7,6 +7,7 @@ import { JwtModule, JwtService, } from '@nestjs/jwt';
 import { Student } from 'src/students/entities/student.entity';
 import { ConfigModule,  } from '@nestjs/config';
 import { GoogleAuthService } from './googleauthservice';
+import { AuthGuard } from 'src/common/Gaurds/auth.guard';
 
 @Module({
   imports:[
@@ -23,7 +24,7 @@ import { GoogleAuthService } from './googleauthservice';
     
     JwtModule.register({
     secret: process.env.SECRET_KEY || 'your_secret_key',
-    signOptions: { expiresIn: '1m' },
+    signOptions: { expiresIn: '1d' },
   }),
 ], 
   controllers: [AuthController,],
@@ -34,6 +35,7 @@ import { GoogleAuthService } from './googleauthservice';
   //   provide: APP_GUARD,
   //   useClass: AuthGuard,
   // },
+  AuthGuard
   ],
   exports:[JwtModule,AuthService]
 })

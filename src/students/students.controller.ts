@@ -5,12 +5,12 @@ import { FileInterceptor } from '@nestjs/platform-express';
 import { Public } from 'src/auth/entities/public';
 import { UpdateStudentDto } from './dto/update-student.dto';
 import { Request } from 'express';
-import { AuthGuard } from 'common/Gaurds/auth.guard';
-import { AuthRequest } from 'common/interfaces/auth-request.interface';
+// import { AuthGuard } from 'common/Gaurds/auth.guard';
+// import { AuthRequest } from 'common/interfaces/auth-request.interface';
+import { AuthGuard } from 'src/common/Gaurds/auth.guard';
 // import { AuthRequest } from 'src/common/interfaces/auth-request.interface';
-@UseGuards(AuthGuard)
 @Controller('students')
-
+ 
 export class StudentsController {
   constructor(private readonly studentsService: StudentsService) {}
 @Public()
@@ -47,11 +47,12 @@ async searchCourseId(@Query('search') search: string,@Query('id') id:number) {
 //       ],
 //     });
 //   }
+@UseGuards(AuthGuard)
 
 @Get('profile')
 async profile(@Req() req: Request) {
 
-  console.log(req['user']);
+  console.log(req);
 
   return await this.studentsService.profile(req['user'].id);
 }

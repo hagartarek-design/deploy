@@ -14,7 +14,7 @@ const common_1 = require("@nestjs/common");
 const constants_1 = require("@nestjs/common/constants");
 const core_1 = require("@nestjs/core");
 const typeorm_1 = require("typeorm");
-const role_entity_1 = require("../../src/role/entities/role.entity");
+const role_entity_1 = require("../../role/entities/role.entity");
 let RolesSeeder = class RolesSeeder {
     constructor(dataSource, modulesContainer, reflector) {
         this.dataSource = dataSource;

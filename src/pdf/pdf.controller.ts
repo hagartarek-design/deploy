@@ -14,12 +14,13 @@ import { diskStorage } from 'multer';
 import * as path from 'path';
 // import {}
 import { PdfService } from './pdf.service';
-import { Public } from 'common/decorator/public.decorator';
+// import { Public } from 'common/decorator/public.decorator';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Lesson } from 'src/teacher/lesson/entities/lesson.entity';
 import { Repository } from 'typeorm';
 import { Response } from 'express';
 import { Section } from 'src/sections/entities/section.entity';
+import { Public } from 'src/common/decorator/public.decorator';
 
 @Controller('pdf')
 export class PdfController {

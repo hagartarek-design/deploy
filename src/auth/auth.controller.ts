@@ -5,9 +5,10 @@ import { AuthService } from './auth.service';
 import { OAuth2Client } from 'google-auth-library';
 import { Public } from './entities/public';
 import { CreateAuthDto } from './dto/create-auth.dto';
-// import { AuthGuard } from '@nestjs/passport';
+// import { GoogleAuthGuard } from '@nestjs/passport';
 import { GoogleAuthService } from './googleauthservice';
-import { AuthGuard } from '@nestjs/passport/dist/auth.guard';
+import { AuthGuard as GoogleAuthGuard } from '@nestjs/passport';
+// import { AuthGuard as JwtAuthGuard } from './auth.guard';
 // import { AuthGuard } from './auth.guard';
 
 @Controller('auth')
@@ -150,12 +151,12 @@ return this.authService.logout(req.user.id);
     return this.authService.changePassword(req.user.id, dto.oldPassword, dto.newPassword);
   }
     @Get('google')
-    @UseGuards(AuthGuard('google'))
+    @UseGuards(GoogleAuthGuard('google'))
     async googleAuth() {
     }
   
     @Get('google/callback')
-    @UseGuards(AuthGuard('google'))
+    @UseGuards(GoogleAuthGuard('google'))
     googleAuthRedirect(@Req() req, @Res() res) {
       const user = req.user;
       return res.redirect(`flutterapp://login?token=${user.accessToken}`);

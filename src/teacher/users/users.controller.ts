@@ -1,9 +1,10 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, UploadedFile, Request, UseInterceptors, BadRequestException, UseGuards, Req } from '@nestjs/common';
 import { UsersService } from './users.service';
 import { FileInterceptor } from '@nestjs/platform-express';
-import { AuthGuard } from '../../../common/Gaurds/auth.guard';
+// import { AuthGuard } from '../../../common/Gaurds/auth.guard';
 
 import { CreateSectionDto } from 'src/sections/dto/create-section.dto';
+import { AuthGuard } from 'src/common/Gaurds/auth.guard';
 
 @Controller('users')
 export class UsersController {

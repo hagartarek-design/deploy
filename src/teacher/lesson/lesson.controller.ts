@@ -9,7 +9,8 @@ import { In, Repository } from 'typeorm';
 import { Content } from 'src/content/entities/content.entity';
 import { Lesson, TrackProgressDto } from './entities/lesson.entity';
 import { Section } from 'src/sections/entities/section.entity';
-import { Public } from 'common/decorator/public.decorator';
+import { Public } from 'src/common/decorator/public.decorator';
+// import { Public } from 'common/decorator/public.decorator';
 
 
 @Controller('lesson')

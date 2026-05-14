@@ -198,11 +198,14 @@ import { Cart } from './cart/entities/cart.entity';
 import { Role } from './role/entities/role.entity';
 import { Users } from './users/entities/user.entity';
 
-import { DynamicRoleGuard } from 'common/Gaurds/dynamicrolegaurd';
-import { JwtAuthGuard } from 'common/Gaurds/mockdynamicroles';
-import { RolesSeeder } from 'common/Gaurds/script';
+// import { DynamicRoleGuard } from 'common/Gaurds/dynamicrolegaurd';
+// import { JwtAuthGuard } from 'common/Gaurds/mockdynamicroles';
+// import { RolesSeeder } from 'common/Gaurds/script';
 import { FirebaseTeacherModule } from './auth/entities/firebase-admin-teacher';
-import { RolesSeeder2 } from 'common/Gaurds/script copy';
+// import { RolesSeeder2 } from 'common/Gaurds/script copy';
+import { DynamicRoleGuard } from './common/Gaurds/dynamicrolegaurd';
+import { JwtAuthGuard } from './common/Gaurds/mockdynamicroles';
+import { RolesSeeder } from './common/Gaurds/script';
 
 @Module({
   imports: [
@@ -336,7 +339,7 @@ FirebaseTeacherModule,
     DynamicRoleGuard,
     JwtAuthGuard,
     Reflector,
-    RolesSeeder,RolesSeeder2
+    RolesSeeder//,RolesSeeder2
   ],
 })
 export class AppModule {}

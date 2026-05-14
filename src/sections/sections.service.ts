@@ -1,11 +1,12 @@
-import { BadRequestException, Body, ConflictException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Body, ConflictException, Injectable, NotFoundException, UseGuards } from '@nestjs/common';
 import { CreateSectionDto } from './dto/create-section.dto';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Section } from './entities/section.entity';
 import { Repository } from 'typeorm';
 import { Student } from 'src/students/entities/student.entity';
 import { Cart } from 'src/cart/entities/cart.entity';
-
+import { AuthGuard } from 'src/common/Gaurds/auth.guard';
+@UseGuards(AuthGuard)
 @Injectable()
 export class SectionsService {
   constructor(

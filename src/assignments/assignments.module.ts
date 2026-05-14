@@ -7,7 +7,7 @@ import { Userquestion } from 'src/teacher/userquestion/entities/userquestion.ent
 import { User } from 'src/teacher/users/entities/user.entity';
 import { JwtModule } from '@nestjs/jwt';
 import { APP_GUARD } from '@nestjs/core';
-import { AuthGuard } from 'common/Gaurds/auth.guard';
+// import { AuthGuard } from 'common/Gaurds/auth.guard';
 import { MulterModule } from '@nestjs/platform-express';
 import { multerConfig } from 'src/teacher/users/uploads/fileupload';
 import { Attachment } from 'src/attachments/entities/attachment.entity';

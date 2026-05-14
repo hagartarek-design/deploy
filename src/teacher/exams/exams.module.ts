@@ -10,7 +10,7 @@ import { JwtModule, JwtService } from '@nestjs/jwt';
 import { MulterModule } from '@nestjs/platform-express';
 import { multerConfig } from 'src/teacher/users/uploads/fileupload';
 import { APP_GUARD } from '@nestjs/core';
-import { AuthGuard } from 'common/Gaurds/auth.guard';
+// import { AuthGuard } from 'common/Gaurds/auth.guard';
 import { Attachment } from 'src/attachments/entities/attachment.entity';
 import { AuthModule } from 'src/auth/auth.module';
 import { AuthService } from 'src/auth/auth.service';
