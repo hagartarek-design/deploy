@@ -1,9 +1,10 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Req, Query } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Req, Query, UseGuards } from '@nestjs/common';
 import { StudentCourseService } from './student_course.service';
 import { CreateStudentCourseDto } from './dto/create-student_course.dto';
 import { UpdateStudentCourseDto } from './dto/update-student_course.dto';
 import { Request } from 'express';
-
+import { AuthGuard } from 'src/common/Gaurds/auth.guard';
+@UseGuards(AuthGuard)
 @Controller('student-course')
 export class StudentCourseController {
   constructor(private readonly studentCourseService: StudentCourseService) {}

@@ -20,6 +20,8 @@ const update_cart_dto_1 = require("./dto/update-cart.dto");
 const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const course_entity_1 = require("../courses/entities/course.entity");
+const auth_guard_1 = require("../common/Gaurds/auth.guard");
+(0, common_1.UseGuards)(auth_guard_1.AuthGuard);
 let CartController = class CartController {
     constructor(cartService, coursesrepo) {
         this.cartService = cartService;

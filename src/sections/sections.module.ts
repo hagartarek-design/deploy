@@ -7,12 +7,13 @@ import { Section } from './entities/section.entity';
 import { Lesson } from 'src/teacher/lesson/entities/lesson.entity';
 import { Student } from 'src/students/entities/student.entity';
 import { Cart } from 'src/cart/entities/cart.entity';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
   imports:[TypeOrmModule.forFeature([
     Section,Lesson,Student,Cart
   ])],
   controllers: [SectionsController],
-  providers: [SectionsService],
+  providers: [SectionsService,JwtService],
 })
 export class SectionsModule {}

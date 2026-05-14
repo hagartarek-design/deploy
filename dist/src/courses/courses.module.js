@@ -21,6 +21,7 @@ const section_entity_1 = require("../sections/entities/section.entity");
 const lesson_entity_1 = require("../teacher/lesson/entities/lesson.entity");
 const studentquestion_entity_1 = require("../studentquestions/entities/studentquestion.entity");
 const cart_entity_1 = require("../cart/entities/cart.entity");
+const jwt_1 = require("@nestjs/jwt");
 let CoursesModule = class CoursesModule {
 };
 exports.CoursesModule = CoursesModule;
@@ -28,7 +29,7 @@ exports.CoursesModule = CoursesModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([cart_entity_1.Cart, course_entity_1.Course, student_entity_1.Student, event_entity_1.Event, course_attend_entity_1.CourseAttend, exam_entity_1.Exam, course_info_entity_1.CourseInfo, section_entity_1.Section, lesson_entity_1.Lesson, studentquestion_entity_1.Studentquestion])],
         controllers: [courses_controller_1.CoursesController],
-        providers: [courses_service_1.CoursesService],
+        providers: [courses_service_1.CoursesService, jwt_1.JwtService],
     })
 ], CoursesModule);
 //# sourceMappingURL=courses.module.js.map

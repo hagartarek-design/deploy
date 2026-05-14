@@ -12,10 +12,11 @@ import { Section } from 'src/sections/entities/section.entity';
 import { Lesson } from 'src/teacher/lesson/entities/lesson.entity';
 import { Studentquestion } from 'src/studentquestions/entities/studentquestion.entity';
 import { Cart } from 'src/cart/entities/cart.entity';
+import { JwtService } from '@nestjs/jwt';
 
 @Module({
   imports:[TypeOrmModule.forFeature([Cart,Course,Student,Event,CourseAttend,Exam,CourseInfo,Section,Lesson,Studentquestion])],
   controllers: [CoursesController],
-  providers: [CoursesService],
+  providers: [CoursesService,JwtService],
 })
 export class CoursesModule {}

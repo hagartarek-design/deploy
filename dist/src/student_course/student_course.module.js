@@ -15,6 +15,7 @@ const student_course_entity_1 = require("./entities/student_course.entity");
 const course_entity_1 = require("../courses/entities/course.entity");
 const student_entity_1 = require("../students/entities/student.entity");
 const course_info_entity_1 = require("../course_info/entities/course_info.entity");
+const jwt_1 = require("@nestjs/jwt");
 let StudentCourseModule = class StudentCourseModule {
 };
 exports.StudentCourseModule = StudentCourseModule;
@@ -22,7 +23,7 @@ exports.StudentCourseModule = StudentCourseModule = __decorate([
     (0, common_1.Module)({
         imports: [typeorm_1.TypeOrmModule.forFeature([student_course_entity_1.StudentCourse, course_entity_1.Course, student_entity_1.Student, course_info_entity_1.CourseInfo])],
         controllers: [student_course_controller_1.StudentCourseController],
-        providers: [student_course_service_1.StudentCourseService],
+        providers: [student_course_service_1.StudentCourseService, jwt_1.JwtService],
     })
 ], StudentCourseModule);
 //# sourceMappingURL=student_course.module.js.map

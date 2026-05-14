@@ -17,6 +17,7 @@ const student_entity_1 = require("../students/entities/student.entity");
 const course_entity_1 = require("../courses/entities/course.entity");
 const section_entity_1 = require("../sections/entities/section.entity");
 const lesson_entity_1 = require("../teacher/lesson/entities/lesson.entity");
+const jwt_1 = require("@nestjs/jwt");
 let CartModule = class CartModule {
 };
 exports.CartModule = CartModule;
@@ -27,7 +28,7 @@ exports.CartModule = CartModule = __decorate([
                 attachment_entity_1.Attachment, cart_entity_1.Cart, student_entity_1.Student, course_entity_1.Course, section_entity_1.Section, student_entity_1.Student
             ])],
         controllers: [cart_controller_1.CartController],
-        providers: [cart_service_1.CartService],
+        providers: [cart_service_1.CartService, jwt_1.JwtService],
     })
 ], CartModule);
 //# sourceMappingURL=cart.module.js.map

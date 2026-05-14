@@ -26,6 +26,7 @@ const typeorm_1 = require("@nestjs/typeorm");
 const typeorm_2 = require("typeorm");
 const lesson_entity_1 = require("../teacher/lesson/entities/lesson.entity");
 const fs = require("fs");
+const auth_guard_1 = require("../common/Gaurds/auth.guard");
 let CoursesController = class CoursesController {
     constructor(coursesService, lesson) {
         this.coursesService = coursesService;
@@ -601,6 +602,7 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], CoursesController.prototype, "serveImage", null);
 exports.CoursesController = CoursesController = __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     (0, common_1.Controller)('courses'),
     __param(1, (0, typeorm_1.InjectRepository)(lesson_entity_1.Lesson)),
     __metadata("design:paramtypes", [courses_service_1.CoursesService,

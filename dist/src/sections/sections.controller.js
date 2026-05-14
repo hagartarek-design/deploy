@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const sections_service_1 = require("./sections.service");
 const create_section_dto_1 = require("./dto/create-section.dto");
 const update_section_dto_1 = require("./dto/update-section.dto");
+const auth_guard_1 = require("../common/Gaurds/auth.guard");
 let SectionsController = class SectionsController {
     constructor(sectionsService) {
         this.sectionsService = sectionsService;
@@ -118,6 +119,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], SectionsController.prototype, "remove", null);
 exports.SectionsController = SectionsController = __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     (0, common_1.Controller)('sections'),
     __metadata("design:paramtypes", [sections_service_1.SectionsService])
 ], SectionsController);

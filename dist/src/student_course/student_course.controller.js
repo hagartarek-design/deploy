@@ -17,6 +17,7 @@ const common_1 = require("@nestjs/common");
 const student_course_service_1 = require("./student_course.service");
 const create_student_course_dto_1 = require("./dto/create-student_course.dto");
 const update_student_course_dto_1 = require("./dto/update-student_course.dto");
+const auth_guard_1 = require("../common/Gaurds/auth.guard");
 let StudentCourseController = class StudentCourseController {
     constructor(studentCourseService) {
         this.studentCourseService = studentCourseService;
@@ -141,6 +142,7 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], StudentCourseController.prototype, "remove", null);
 exports.StudentCourseController = StudentCourseController = __decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
     (0, common_1.Controller)('student-course'),
     __metadata("design:paramtypes", [student_course_service_1.StudentCourseService])
 ], StudentCourseController);

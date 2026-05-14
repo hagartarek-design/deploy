@@ -15,6 +15,7 @@ const section_entity_1 = require("./entities/section.entity");
 const lesson_entity_1 = require("../teacher/lesson/entities/lesson.entity");
 const student_entity_1 = require("../students/entities/student.entity");
 const cart_entity_1 = require("../cart/entities/cart.entity");
+const jwt_1 = require("@nestjs/jwt");
 let SectionsModule = class SectionsModule {
 };
 exports.SectionsModule = SectionsModule;
@@ -24,7 +25,7 @@ exports.SectionsModule = SectionsModule = __decorate([
                 section_entity_1.Section, lesson_entity_1.Lesson, student_entity_1.Student, cart_entity_1.Cart
             ])],
         controllers: [sections_controller_1.SectionsController],
-        providers: [sections_service_1.SectionsService],
+        providers: [sections_service_1.SectionsService, jwt_1.JwtService],
     })
 ], SectionsModule);
 //# sourceMappingURL=sections.module.js.map

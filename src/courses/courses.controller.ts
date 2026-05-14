@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete,ParseIntPipe, Query,UploadedFile, BadRequestException, Req, UseInterceptors, NotFoundException, Res } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete,ParseIntPipe, Query,UploadedFile, BadRequestException, Req, UseInterceptors, NotFoundException, Res, UseGuards } from '@nestjs/common';
 import { CoursesService } from './courses.service';
 import { CreateCourseDto, RechargeDto } from './dto/create-course.dto';
 import { UpdateCourseDto } from './dto/update-course.dto';
@@ -15,6 +15,8 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { Lesson } from 'src/teacher/lesson/entities/lesson.entity';
 import * as fs from 'fs';
+import { AuthGuard } from 'src/common/Gaurds/auth.guard';
+@UseGuards(AuthGuard)
 @Controller('courses')
 export class CoursesController {
   constructor(private readonly coursesService: CoursesService

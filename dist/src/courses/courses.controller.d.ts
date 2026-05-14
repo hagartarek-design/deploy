@@ -70,10 +70,10 @@ export declare class CoursesController {
     findmonth_by_year(month_by_year?: string): Promise<import("./entities/course.entity").Course>;
     bytypetoday(type: string): Promise<import("./entities/course.entity").Course>;
     findmany(): Promise<import("./entities/course.entity").Course[]>;
-    getcourseNumStudent(id?: number, page?: number, limit?: number): Promise<import("./entities/course.entity").Course[] | NotFoundException>;
-    getonecourseStudent(id?: string, page?: string, limit?: string): Promise<import("./entities/course.entity").Course | NotFoundException>;
-    getCourse(id: number, req?: Request, page?: number, limit?: number): Promise<import("./entities/course.entity").Course | NotFoundException | BadRequestException>;
-    findbyId(id: number, req: any, page?: number, limit?: number): Promise<import("./entities/course.entity").Course | import("@nestjs/common").ForbiddenException | BadRequestException>;
+    getcourseNumStudent(id?: number, page?: number, limit?: number): Promise<NotFoundException | import("./entities/course.entity").Course[]>;
+    getonecourseStudent(id?: string, page?: string, limit?: string): Promise<NotFoundException | import("./entities/course.entity").Course>;
+    getCourse(id: number, req?: Request, page?: number, limit?: number): Promise<NotFoundException | import("./entities/course.entity").Course | BadRequestException>;
+    findbyId(id: number, req: any, page?: number, limit?: number): Promise<import("./entities/course.entity").Course | BadRequestException | import("@nestjs/common").ForbiddenException>;
     findAll(id?: number, page?: number, limit?: number): Promise<import("./entities/course.entity").Course | import("@nestjs/common").ForbiddenException>;
     byCenterName2(id: number): Promise<import("./entities/course.entity").Course[]>;
     update(id: string, updateCourseDto: UpdateCourseDto): string;

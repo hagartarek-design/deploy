@@ -17,6 +17,8 @@ const common_1 = require("@nestjs/common");
 const materials_service_1 = require("./materials.service");
 const create_material_dto_1 = require("./dto/create-material.dto");
 const update_material_dto_1 = require("./dto/update-material.dto");
+const auth_guard_1 = require("../common/Gaurds/auth.guard");
+(0, common_1.UseGuards)(auth_guard_1.AuthGuard);
 let MaterialsController = class MaterialsController {
     constructor(materialsService) {
         this.materialsService = materialsService;
