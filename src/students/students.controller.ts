@@ -49,7 +49,7 @@ async searchCourseId(@Query('search') search: string,@Query('id') id:number) {
 @Get('profile')
 async profile(@Req() req: Request) {
 
-  console.log(req);
+  console.log(req['user']);
 
   return await this.studentsService.profile(req['user'].id);
 }

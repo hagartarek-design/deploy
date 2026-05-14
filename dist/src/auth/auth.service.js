@@ -208,7 +208,7 @@ let AuthService = class AuthService {
         };
     }
     async studentGoogleLogin(idToken) {
-        const { email, name, } = await this.verifyGoogleTokenTeacher(idToken);
+        const { email, name, } = await this.verifyGoogleToken(idToken);
         let student = await this.students.findOne({ where: { email } });
         console.log(student);
         if (!student) {

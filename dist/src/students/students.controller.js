@@ -36,7 +36,7 @@ let StudentsController = class StudentsController {
         return await this.studentsService.searchCourseId(search || '', id);
     }
     async profile(req) {
-        console.log(req);
+        console.log(req['user']);
         return await this.studentsService.profile(req['user'].id);
     }
     async search(search) {

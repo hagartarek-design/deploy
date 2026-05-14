@@ -22,17 +22,17 @@ import { AuthService } from 'src/auth/auth.service';
   imports: [
   
    AuthModule,
-    MulterModule.register({
-     storage:diskStorage({
-      destination:'./uploads',
-      filename:(req,file,cb)=>{
-        const filename=`${Date.now()}-${file.originalname}`;
-        cb(null,filename)
-      }
+    // MulterModule.register({
+    //  storage:diskStorage({
+    //   destination:'./uploads',
+    //   filename:(req,file,cb)=>{
+    //     const filename=`${Date.now()}-${file.originalname}`;
+    //     cb(null,filename)
+    //   }
       
-     }) 
-    }),
-    TypeOrmModule.forFeature([Student,Course,Image,User,Exam,Userquestion,StudentCourse]),MulterModule.register(multerConfig),],
+    //  }) 
+    // }),
+    TypeOrmModule.forFeature([Student,Course,Image,User,Exam,Userquestion,StudentCourse]),],
   controllers: [StudentsController],
   providers: [StudentsService,//AuthService,
   //    {
