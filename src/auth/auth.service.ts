@@ -527,12 +527,12 @@ async studentGoogleLogin(idToken: string,) {
 
   const token = this.jwtService.sign(
     { id: student.id , email:student.email,},
-    { expiresIn: '1m' },
+    { expiresIn: '1d' },
   );
 
   const refreshtoken = this.jwtService.sign(
     { id: student.id , email:student.email,},
-    { expiresIn: '2m' },
+    { expiresIn: '2d' },
   );
 console.log(token);
 

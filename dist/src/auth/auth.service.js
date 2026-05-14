@@ -219,8 +219,8 @@ let AuthService = class AuthService {
             });
             await this.students.save(student);
         }
-        const token = this.jwtService.sign({ id: student.id, email: student.email, }, { expiresIn: '1m' });
-        const refreshtoken = this.jwtService.sign({ id: student.id, email: student.email, }, { expiresIn: '2m' });
+        const token = this.jwtService.sign({ id: student.id, email: student.email, }, { expiresIn: '1d' });
+        const refreshtoken = this.jwtService.sign({ id: student.id, email: student.email, }, { expiresIn: '2d' });
         console.log(token);
         return {
             success: true,
