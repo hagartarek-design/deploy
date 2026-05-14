@@ -42,14 +42,14 @@ let SectionsController = class SectionsController {
         return await this.sectionsService.mysections();
     }
     async addToCart(req, id) {
-        return await this.sectionsService.addToCart(req['student'].id, id);
+        return await this.sectionsService.addToCart(req['user'].id, id);
     }
     async isEnrolled(req, sectionId) {
-        const result = await this.sectionsService.isEnrolled(req['student'].id, sectionId);
+        const result = await this.sectionsService.isEnrolled(req['user'].id, sectionId);
         return { enrolled: result };
     }
     async payWithCode(req, code, sectionId) {
-        return await this.sectionsService.payWithCode(req['student'].id, code, sectionId);
+        return await this.sectionsService.payWithCode(req['user'].id, code, sectionId);
     }
     remove(id, req) {
         return this.sectionsService.remove(+id, req.user.id);

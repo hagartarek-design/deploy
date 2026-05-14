@@ -43,7 +43,7 @@ let StudentsController = class StudentsController {
         return this.studentsService.search(search || '');
     }
     async mycourses(req) {
-        return await this.studentsService.mycourses(req['student'].id);
+        return await this.studentsService.mycourses(req['user'].id);
     }
     withpaginating(paginationDto) {
         const { page, limit } = paginationDto;
@@ -59,13 +59,13 @@ let StudentsController = class StudentsController {
         return await this.studentsService.addAnswer(id, addAnswerDto);
     }
     async upload(UpdateStudentDto, req) {
-        return await this.studentsService.update(UpdateStudentDto, req['student'].id);
+        return await this.studentsService.update(UpdateStudentDto, req['user'].id);
     }
     async uploadFile(req, file) {
         if (!file) {
             throw new common_1.BadRequestException('No file uploaded');
         }
-        const response = await this.studentsService.handleFileUpload(req['student'].id, file);
+        const response = await this.studentsService.handleFileUpload(req['user'].id, file);
         return response;
     }
     async findbyId(id, req, page, limit, attendence, exam_name) {

@@ -33,16 +33,16 @@ let CoursesController = class CoursesController {
         this.lesson = lesson;
     }
     async getbysectionid(req, section_id) {
-        return await this.coursesService.getbysectionid(req['student'].id, section_id);
+        return await this.coursesService.getbysectionid(req['user'].id, section_id);
     }
     async getallCourses(req) {
-        return await this.coursesService.getallCourses(req['student'].id);
+        return await this.coursesService.getallCourses(req['user'].id);
     }
     async createCard(req) {
-        return this.coursesService.generateCard(req['student'].id);
+        return this.coursesService.generateCard(req['user'].id);
     }
     async getsectionid(req, lesson_id) {
-        return await this.coursesService.getsectionid(req['student'].id, lesson_id);
+        return await this.coursesService.getsectionid(req['user'].id, lesson_id);
     }
     async uploadPDF(file) {
         return this.coursesService.createPDF(file);
@@ -83,7 +83,7 @@ let CoursesController = class CoursesController {
         res.send(pdf.fileData);
     }
     async payWithCode(req, code, courseId) {
-        return await this.coursesService.payWithCode(req['student'].id, code, courseId);
+        return await this.coursesService.payWithCode(req['user'].id, code, courseId);
     }
     async generate(body) {
         return await this.coursesService.generatesCode(body.courseId);
@@ -182,11 +182,11 @@ let CoursesController = class CoursesController {
         return { message: 'Lesson deleted successfully' };
     }
     async recharge(dto, req) {
-        const userId = req['student'].id || 1;
+        const userId = req['user'].id || 1;
         return this.coursesService.useRechargeCard(dto, userId);
     }
     async addToCart(req, id) {
-        return await this.coursesService.addToCart(req['student'].id, id);
+        return await this.coursesService.addToCart(req['user'].id, id);
     }
     async uploadPdf(file) {
         const pdf = await this.coursesService.savePdf(file);

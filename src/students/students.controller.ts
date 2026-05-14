@@ -65,7 +65,7 @@ async search(@Query('search') search: string) {
 async mycourses(@Req() req:Request) {
   // console.log(this.examsService.mycoursesStudents(mycourses || ''));
   
-  return await this.studentsService.mycourses(req['student'].id);
+  return await this.studentsService.mycourses(req['user'].id);
 }
 
 @Get('/pagination')
@@ -93,7 +93,7 @@ return await this.studentsService.addAnswer(id,addAnswerDto)
 
 @Patch('/schedualCenter/p')
 async upload(@Body() UpdateStudentDto:UpdateStudentDtoinfo,@Req() req:Request){
-return await this.studentsService.update(UpdateStudentDto,req['student'].id)
+return await this.studentsService.update(UpdateStudentDto,req['user'].id)
 }
 //   @Patch('/upload/pic')
 //   @UseInterceptors(FileInterceptor('file'))
@@ -105,7 +105,7 @@ return await this.studentsService.update(UpdateStudentDto,req['student'].id)
 //       throw new BadRequestException('No file uploaded');
 //     }
 
-//     const response = await this.studentsService.handleFileUpload(req['student'].id, file);
+//     const response = await this.studentsService.handleFileUpload(req['user'].id, file);
 //     return response;
 //   }
 
@@ -135,7 +135,7 @@ return await this.studentsService.update(UpdateStudentDto,req['student'].id)
       throw new BadRequestException('No file uploaded');
     }
 
-    const response = await this.studentsService.handleFileUpload(req['student'].id, file);
+    const response = await this.studentsService.handleFileUpload(req['user'].id, file);
     return response;
   }
 

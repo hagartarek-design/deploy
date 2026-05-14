@@ -41,21 +41,21 @@ async  mysections(){
 
 @Post('addtocart/:id')
 async addToCart(@Req() req:Request,@Param('id') id:number,){
-return await this.sectionsService.addToCart(req['student'].id,id);
+return await this.sectionsService.addToCart(req['user'].id,id);
 }
 
 
 
 @Get('/isEnrolled/:sectionId')
 async isEnrolled (@Req() req:Request, @Param('sectionId') sectionId: number) {
-  const result = await this.sectionsService.isEnrolled(req['student'].id, sectionId);
+  const result = await this.sectionsService.isEnrolled(req['user'].id, sectionId);
   return { enrolled: result };
 }
  @Patch('/pay-with-code/charge')
     async payWithCode(@Req() req:Request,@Body('code') code: string ,@Query('sectionId') sectionId:number) {
-      // console.log(req['student'].id);
+      // console.log(req['user'].id);
       
-      return await this.sectionsService.payWithCode(req['student'].id, code,sectionId);
+      return await this.sectionsService.payWithCode(req['user'].id, code,sectionId);
     }
 
   // @Get()

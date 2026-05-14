@@ -33,23 +33,23 @@ export class CoursesController {
 async getbysectionid(@Req()req:Request,@Query('section_id') section_id:number ){
   // console.log('mmm',section_id);
   
-return await this.coursesService.getbysectionid(req['student'].id,section_id)
+return await this.coursesService.getbysectionid(req['user'].id,section_id)
 }  
 
 @Get('getallcourses')
 async getallCourses(@Req() req:Request)
 {
-  return await this.coursesService.getallCourses(req['student'].id)
+  return await this.coursesService.getallCourses(req['user'].id)
 }
  @Patch('card')
   async createCard(@Req() req:Request) {
-    return this.coursesService.generateCard(req['student'].id);
+    return this.coursesService.generateCard(req['user'].id);
   }
   @Get('getsectionid')
 async getsectionid(@Req()req:Request,@Query('lesson_id') lesson_id:number ){
   // console.log('mmm',lesson_id);
   
-return await this.coursesService.getsectionid(req['student'].id,lesson_id)
+return await this.coursesService.getsectionid(req['user'].id,lesson_id)
 }  
  @Post('upload/pdf')
   @UseInterceptors(FileInterceptor('file', {
@@ -201,7 +201,7 @@ res.send(pdf.fileData);
   async payWithCode(@Req() req:Request,@Body('code') code: string ,@Query('courseId') courseId:number) {
     // console.log(req['student'].id);
     
-    return await this.coursesService.payWithCode(req['student'].id, code,courseId);
+    return await this.coursesService.payWithCode(req['user'].id, code,courseId);
   }
    @Patch('generate')
   async generate(@Body() body: { courseId: number }) {
@@ -449,7 +449,7 @@ byCenterName2(@Param('id') id:number ){
   }
   @Patch('/update/charge')
   async recharge(@Body() dto: RechargeDto, @Req() req) {
-    const userId = req['student'].id || 1; 
+    const userId = req['user'].id || 1; 
     return this.coursesService.useRechargeCard(dto, userId);
   }
 
@@ -457,7 +457,7 @@ byCenterName2(@Param('id') id:number ){
 
 @Post('addtocart/:id')
 async addToCart(@Req() req:Request,@Param('id') id:number,){
-return await this.coursesService.addToCart(req['student'].id,id);
+return await this.coursesService.addToCart(req['user'].id,id);
 }
 
 

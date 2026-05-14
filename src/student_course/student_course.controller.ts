@@ -18,30 +18,30 @@ export class StudentCourseController {
   studentcourse(@Req() req:Request) {
     // console.log(req['student']);
     
-    return this.studentCourseService.studentcourse(req['student'].id);
+    return this.studentCourseService.studentcourse(req['user'].id);
   }
   @Get('courses')
   studentcourse2(@Req() req:Request,@Query('name') name:string) {
     // console.log(req['student']);
     
-    return this.studentCourseService.studentcourse2(req['student'].id,name);
+    return this.studentCourseService.studentcourse2(req['user'].id,name);
   }
   @Get('course')
   coursebystudent(@Req() req:Request,) {
     // console.log(req['student']);
     
-    return this.studentCourseService.coursebystudent(req['student'].id,);
+    return this.studentCourseService.coursebystudent(req['user'].id,);
   }
 
   @Get('courseInfo/')
 async  courseinfo(@Req() req:Request,@Query('course_id') course_id?:number) {
     // console.log(req['student']);
     
-    return  await this.studentCourseService.courseinfo(req['student'].id,course_id);
+    return  await this.studentCourseService.courseinfo(req['user'].id,course_id);
   }
 @Get('courseInfoid')
 async courseinfobyid (@Req() req:Request,@Query('courseId') courseId:number){
-return await this.studentCourseService.courseinfobyid(req['student'].id,courseId)
+return await this.studentCourseService.courseinfobyid(req['user'].id,courseId)
 
 } 
 
@@ -51,12 +51,12 @@ return await this.studentCourseService.courseinfobyid(req['student'].id,courseId
 
 @Get('/isEnrolled/:courseId')
 async isEnrolled (@Req() req:Request,@Param('courseId') courseId:number){
-const result= await this.studentCourseService.isEnrolled(req['student'].id,courseId)
+const result= await this.studentCourseService.isEnrolled(req['user'].id,courseId)
 return {enrolled:result}
 } 
 @Get('sections/:infoid')
 async courseinfobyid2 (@Req() req:Request,@Param('infoid') infoid:number){
-return await this.studentCourseService.courseinfobyid2(req['student'].id,infoid)
+return await this.studentCourseService.courseinfobyid2(req['user'].id,infoid)
 
 } 
 

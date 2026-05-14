@@ -26,26 +26,26 @@ let StudentCourseController = class StudentCourseController {
         return this.studentCourseService.create(createStudentCourseDto);
     }
     studentcourse(req) {
-        return this.studentCourseService.studentcourse(req['student'].id);
+        return this.studentCourseService.studentcourse(req['user'].id);
     }
     studentcourse2(req, name) {
-        return this.studentCourseService.studentcourse2(req['student'].id, name);
+        return this.studentCourseService.studentcourse2(req['user'].id, name);
     }
     coursebystudent(req) {
-        return this.studentCourseService.coursebystudent(req['student'].id);
+        return this.studentCourseService.coursebystudent(req['user'].id);
     }
     async courseinfo(req, course_id) {
-        return await this.studentCourseService.courseinfo(req['student'].id, course_id);
+        return await this.studentCourseService.courseinfo(req['user'].id, course_id);
     }
     async courseinfobyid(req, courseId) {
-        return await this.studentCourseService.courseinfobyid(req['student'].id, courseId);
+        return await this.studentCourseService.courseinfobyid(req['user'].id, courseId);
     }
     async isEnrolled(req, courseId) {
-        const result = await this.studentCourseService.isEnrolled(req['student'].id, courseId);
+        const result = await this.studentCourseService.isEnrolled(req['user'].id, courseId);
         return { enrolled: result };
     }
     async courseinfobyid2(req, infoid) {
-        return await this.studentCourseService.courseinfobyid2(req['student'].id, infoid);
+        return await this.studentCourseService.courseinfobyid2(req['user'].id, infoid);
     }
     findOne(id) {
         return this.studentCourseService.findOne(+id);
