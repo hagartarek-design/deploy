@@ -27,19 +27,19 @@ let CodeController = class CodeController {
         return await this.codeService.codes(page, limit);
     }
     async recharge(req, body) {
-        return this.codeService.rechargeCard(req['student'].userId, body.rechargeCode, body.amount);
+        return this.codeService.rechargeCard(req['user'].userId, body.rechargeCode, body.amount);
     }
     async buy(req, body) {
-        return this.codeService.buyCourse(req['student'].id, body.courseId);
+        return this.codeService.buyCourse(req['user'].id, body.courseId);
     }
     async buySection(req, body) {
-        return this.codeService.buySection(req['student'].id, body.sectionId);
+        return this.codeService.buySection(req['user'].id, body.sectionId);
     }
     async buySheet(req) {
-        return this.codeService.buySheet(req['student'].id);
+        return this.codeService.buySheet(req['user'].id);
     }
     async clearcart(req) {
-        return this.codeService.clearcart(req['student'].id);
+        return this.codeService.clearcart(req['user'].id);
     }
 };
 exports.CodeController = CodeController;

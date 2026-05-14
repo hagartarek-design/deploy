@@ -47,14 +47,14 @@ return  await this.codeService.codes(page,limit)
 }
   @Patch('recharge')
   async recharge(@Req() req:Request,@Body() body: { rechargeCode: string,amount:number } ,) {
-    return this.codeService.rechargeCard( req['student'].userId,body.rechargeCode,body.amount);
+    return this.codeService.rechargeCard( req['user'].userId,body.rechargeCode,body.amount);
   }
 
   @Patch('buy')
   async buy(@Req() req:Request, @Body() body: {  courseId: number;// cardSerial: string
 
    }) {
-    return this.codeService.buyCourse(req['student'].id, body.courseId,// body.cardSerial
+    return this.codeService.buyCourse(req['user'].id, body.courseId,// body.cardSerial
 
     );
   }
@@ -62,20 +62,20 @@ return  await this.codeService.codes(page,limit)
   async buySection(@Req() req:Request, @Body() body: {  sectionId: number;// cardSerial: string
 
    }) {
-    return this.codeService.buySection(req['student'].id, body.sectionId,// body.cardSerial
+    return this.codeService.buySection(req['user'].id, body.sectionId,// body.cardSerial
 
     );
   }
   @Patch('buy/buySheet')
   async buySheet(@Req() req:Request,) {
-    return this.codeService.buySheet(req['student'].id,// body.cardSerial
+    return this.codeService.buySheet(req['user'].id,// body.cardSerial
 
     );
   }
 
   @Patch('buy/clearcart')
   async clearcart(@Req() req:Request,) {
-    return this.codeService.clearcart(req['student'].id,// body.cardSerial
+    return this.codeService.clearcart(req['user'].id,// body.cardSerial
 
     );
   }
