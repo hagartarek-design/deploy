@@ -40,6 +40,7 @@ userInputInfo(@Req() req,
     if (!file) {
       throw new BadRequestException('No file uploaded');
     }
+console.log(req);
 
     const response = await this.usersService.handleFileUpload(req.user.id, file);
     return response;
