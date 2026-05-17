@@ -509,45 +509,53 @@ console.log(token);
   }
   };
 }
-async studentGoogleLogin(idToken: string,) {
-  const { email, name,  } = await this.verifyGoogleToken(idToken);
-  let student = await this.students.findOne({ where: { email } });
-  // console.log(student)
+async studentGoogleLogin(idToken: string) {
+  const { email, name,  } =
+    await this.verifyGoogleToken(idToken);
+
+  let student = await this.students.findOne({
+    where: { email },
+  });
 
   if (!student) {
     student = this.students.create({
-      name: name,
+      name,
       email,
       provider: 'google',
-      // image:picture,
+      // image: picture,
     });
-    // student.section = { id:  student.id } as any;
-    await this.students.save(student,);
+
+    await this.students.save(student);
   }
 
   const token = this.jwtService.sign(
-    { id: student.id , email:student.email,},
+    {
+      id: student.id,
+      email: student.email,
+    },
     { expiresIn: '1d' },
   );
 
-  const refreshtoken = this.jwtService.sign(
-    { id: student.id , email:student.email,},
-    { expiresIn: '2h' },
+  const refreshToken = this.jwtService.sign(
+    {
+      id: student.id,
+      email: student.email,
+    },
+    { expiresIn: '7d' },
   );
-// console.log(token);
 
   return {
     success: true,
     message: 'Logged in successfully',
-    token,studentId:student.id,
-    refreshtoken,
-    id: student.id,
-    email: student.email,
-    name: student.name,
-  }
-  
+    token,
+    refreshToken,
+    user: {
+      id: student.id,
+      name: student.name,
+      email: student.email,
+    },
+  };
 }
-
 
 
 
