@@ -17,7 +17,6 @@ async function bootstrap() {
         methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
         allowedHeaders: ['Content-Type', 'Authorization'],
     });
-    app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
     await app.listen(4000, '0.0.0.0');
 }
 bootstrap();

@@ -26,13 +26,16 @@ let UsersController = class UsersController {
         return this.usersService.userInputInfo(req.user.id, email, fullname, phone);
     }
     findAll(req) {
+        console.log('mmm' + req);
         return this.usersService.findAll(req.user.id);
     }
     async uploadFile(req, file) {
+        console.log('User:', req);
         if (!file) {
+            console.log('User:', req);
             throw new common_1.BadRequestException('No file uploaded');
         }
-        console.log(req);
+        console.log('user' + req);
         const response = await this.usersService.handleFileUpload(req.user.id, file);
         return response;
     }
@@ -97,10 +100,10 @@ __decorate([
     __metadata("design:returntype", void 0)
 ], UsersController.prototype, "findAll", null);
 __decorate([
-    (0, common_1.Patch)('/upload'),
     (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
+    (0, common_1.Patch)('/upload'),
     (0, common_1.UseInterceptors)((0, platform_express_1.FileInterceptor)('file')),
-    __param(0, (0, common_1.Request)()),
+    __param(0, (0, common_1.Req)()),
     __param(1, (0, common_1.UploadedFile)()),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [Object, Object]),

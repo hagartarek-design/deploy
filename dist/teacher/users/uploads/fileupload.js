@@ -9,7 +9,7 @@ exports.multerConfig = {
         filename: (req, file, callback) => {
             const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
             const ext = (0, path_1.extname)(file.originalname);
-            callback(null, `${req.student.id}-${uniqueSuffix}${ext}`);
+            callback(null, `${req.user.id}-${uniqueSuffix}${ext}`);
         },
     }),
     limits: {

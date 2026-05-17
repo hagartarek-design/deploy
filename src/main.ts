@@ -42,7 +42,7 @@ async function bootstrap() {
 //   origin: true,
 //   credentials: true,
 // });
-app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
+// app.use('/uploads', express.static(path.join(__dirname, '..', 'uploads')));
 // app.enableCors({
 //   origin: ['http://localhost','http://10.1.12.41:3300','http://10.1.12.41:4000/', 'http://192.168.1.6:3000/'],
 //   credentials: true,

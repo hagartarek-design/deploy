@@ -27,20 +27,25 @@ userInputInfo(@Req() req,
 
     @Get('userInfo')
     findAll(@Request() req) {
+      console.log('mmm'+req);
+      
       return this.usersService. findAll(req.user.id);
     }
 
+    @UseGuards(AuthGuard)
   @Patch('/upload')
-  @UseGuards(AuthGuard)
   @UseInterceptors(FileInterceptor('file'))
-  async uploadFile(@Request() req, @UploadedFile() file: Express.Multer.File) {
+  async uploadFile(@Req() req, @UploadedFile() file: Express.Multer.File) {
     // console.log('User:', req.user);
     // console.log('Uploaded File:', file);
+  console.log('User:', req);
 
     if (!file) {
+      console.log('User:', req);
+      
       throw new BadRequestException('No file uploaded');
     }
-console.log(req);
+console.log('user'+req);
 
     const response = await this.usersService.handleFileUpload(req.user.id, file);
     return response;
@@ -54,7 +59,6 @@ console.log(req);
 @UseGuards(AuthGuard)
 @UseInterceptors(FileInterceptor('file'))
 async uploadcard(@Request() req, @UploadedFile() file: Express.Multer.File,@Body() createSectionDto:CreateSectionDto) {
-  // console.log('User:', req.user);
   // console.log('Uploaded File:', file);
 
   if (!file) {

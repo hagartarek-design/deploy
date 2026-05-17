@@ -192,7 +192,7 @@ let AuthService = class AuthService {
             user.section = { id: user.id };
             await this.user.save(user);
         }
-        const token = this.jwtService.sign({ id: user.id, email: user.email, roles: roles }, { expiresIn: '30m' });
+        const token = this.jwtService.sign({ id: user.id, email: user.email, roles: roles }, { expiresIn: '9m' });
         const refreshtoken = this.jwtService.sign({ id: user.id, email: user.email, roles: roles }, { expiresIn: '2m' });
         console.log(token);
         return {

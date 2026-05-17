@@ -31,18 +31,18 @@ export declare class AuthController {
         name: string;
     }>;
     verifyGoogleToken(idToken: any): Promise<void>;
-    login(email: string, password: string): Promise<import("@nestjs/common").UnauthorizedException | import("@nestjs/common").BadRequestException | {
+    login(email: string, password: string): Promise<import("@nestjs/common").BadRequestException | import("@nestjs/common").UnauthorizedException | {
         message: string;
         token: string;
     }>;
-    loginstudent(email: string, password: string): Promise<import("@nestjs/common").UnauthorizedException | import("@nestjs/common").BadRequestException | {
+    loginstudent(email: string, password: string): Promise<import("@nestjs/common").BadRequestException | import("@nestjs/common").UnauthorizedException | {
         message: string;
         token: string;
         refreshtoken: string;
     }>;
     refresh(body: {
         refreshToken: string;
-    }): Promise<import("@nestjs/common").UnauthorizedException | import("@nestjs/common").ConflictException | {
+    }): Promise<import("@nestjs/common").ConflictException | import("@nestjs/common").UnauthorizedException | {
         token: string;
     }>;
     logout(req: any): Promise<{
