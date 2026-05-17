@@ -488,7 +488,7 @@ async googleLogin(idToken: string,roles) {
 
   const token = this.jwtService.sign(
     { id: user.id , email:user.email,roles:roles},
-    { expiresIn: '1m' },
+    { expiresIn: '30m' },
   );
 
   const refreshtoken = this.jwtService.sign(
