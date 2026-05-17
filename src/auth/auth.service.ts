@@ -372,7 +372,7 @@ async verifyGoogleToken(idToken: string) {
     return {
       email: decodedToken.email,
       name: decodedToken.name,
-      picture: decodedToken.picture,
+      // picture: decodedToken.picture,
       uid: decodedToken.uid,
     };
   } catch (error) {
@@ -509,53 +509,45 @@ console.log(token);
   }
   };
 }
-async studentGoogleLogin(idToken: string) {
-  const { email, name,  } =
-    await this.verifyGoogleToken(idToken);
-
-  let student = await this.students.findOne({
-    where: { email },
-  });
+async studentGoogleLogin(idToken: string,) {
+  const { email, name,  } = await this.verifyGoogleToken(idToken);
+  let student = await this.students.findOne({ where: { email } });
+  // console.log(student)
 
   if (!student) {
     student = this.students.create({
-      name,
+      name: name,
       email,
       provider: 'google',
-      // image: picture,
+      // image:picture,
     });
-
-    await this.students.save(student);
+    // student.section = { id:  student.id } as any;
+    await this.students.save(student,);
   }
 
   const token = this.jwtService.sign(
-    {
-      id: student.id,
-      email: student.email,
-    },
+    { id: student.id , email:student.email,},
     { expiresIn: '1d' },
   );
 
-  const refreshToken = this.jwtService.sign(
-    {
-      id: student.id,
-      email: student.email,
-    },
-    { expiresIn: '7d' },
+  const refreshtoken = this.jwtService.sign(
+    { id: student.id , email:student.email,},
+    { expiresIn: '2h' },
   );
+// console.log(token);
 
   return {
     success: true,
     message: 'Logged in successfully',
-    token,
-    refreshToken,
-    user: {
-      id: student.id,
-      name: student.name,
-      email: student.email,
-    },
-  };
+    token,studentId:student.id,
+    refreshtoken,
+    id: student.id,
+    email: student.email,
+    name: student.name,
+  }
+  
 }
+
 
 
 
